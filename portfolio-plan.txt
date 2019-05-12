@@ -32,20 +32,32 @@ Tables:
 # Twain To Do
 # =====================================
 
-1. Build CoverUploader
+1. Generate CoverUploader
 2. Configure Carrierwave with AWS
 3. Build out and style views
 4. TESTS
 5. Install Devise
 6. Figure out ENV variable system
-7. 
+7. Persist Development Database
+8. Enable gem bundling during development
+9. Enable CORS for controllers' JSON format
+10. Build React app for CRUD index view
+11. Require login to access everything
 
 
 # =========================================================
-# Portfolio Client
+# Twain Client
 # =========================================================
   
 A ReactJS app for displaying my portfolio and blog
+
+# =====================================
+# Twain Client To Do
+# =====================================
+
+1. Add project-slider app from portfolio-2
+2. Build Navbar
+3. Build scenes for projects and blog
 
 
 

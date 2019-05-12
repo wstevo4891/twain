@@ -26,6 +26,9 @@
 # Ignore ENV variables for development and test
 .env
 
+# Ignore portfolio plan document
+portfolio-plan.txt
+
 /public/packs
 /public/packs-test
 /node_modules
