@@ -1,0 +1,48 @@
+# =============================================================================
+# Portfolio Plan
+# =============================================================================
+
+# =========================================================
+# Twain
+# =========================================================
+
+The portfolio server in Rails 6 with React
+
+Twain is where I will build the GUI for my admin interface
+and store all portfolio data. I will use it for writing blog
+posts, adding projects to the portfolio, and building
+experimental labs to try out various features
+of Rails 6 and other software.
+
+# =====================================
+# Twain Database
+# =====================================
+
+Tables:
+1. Projects - Portfolio Projects
+2. Articles - Blog articles
+3. Labs - Experimental Labs
+
+
+# =========================================================
+# Portfolio Client
+# =========================================================
+  
+A ReactJS app for displaying my portfolio and blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

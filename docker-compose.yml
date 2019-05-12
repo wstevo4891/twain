@@ -1,0 +1,65 @@
+# ===============================================
+# docker-compose.yml
+# ===============================================
+
+version: '2'
+services:
+  db:
+    restart: always
+    container_name: postgres_db
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    volumes:
+      - data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: db
+      PGDATA: /tmp
+  web:
+    build: .
+    # command: bash -c "foreman start -f Procfile.dev-server"
+    # command: bundle exec puma -c config/puma.rb
+    volumes:
+      - .:/app
+    ports:
+      - 3000:3000
+    environment:
+      DATABASE_URL: postgres://postgres@db
+    depends_on:
+      - db
+  # webpacker:
+  #   build: .
+  #   command: bundle exec bin/webpack-dev-server
+  #   volumes:
+  #     - .:/app
+  #   ports:
+  #     - 8080:8080
+volumes:
+  data:
+    external: true
+
+# version: '3'
+# services:
+#   postgres:
+#     image: postgres:9.4
+#     ports:
+#       - "5432"
+#   webpacker:
+#     build: .
+#     command: bundle exec bin/webpack-dev-server
+#     volumes:
+#       - .:/portfolio
+#     ports:
+#       - "8080:8080"
+#   web:
+#     build: .
+#     command: bundle exec rails s -p 3000 -b '0.0.0.0'
+#     volumes:
+#       - .:/portfolio
+#     ports:
+#       - "3000:3000"
+#     depends_on:
+#       - postgres
+  
