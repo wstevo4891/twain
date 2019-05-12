@@ -17,6 +17,50 @@
   </div>
 
   <div class="form-group">
+    <%= form.label :summary %>
+    <%= form.text_area :summary, class: 'form-control', size: '24x4' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :slug %>
+    <%= form.text_field :slug, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :meta_title, 'Meta Title' %>
+    <%= form.text_field :meta_title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :meta_description, 'Meta Description' %>
+    <%= form.text_area :meta_description, class: 'form-control', size: '24x4' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :site_link, 'Site Link' %>
+    <%= form.url_field :site_link, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :repo_link, 'Repo Link' %>
+    <%= form.url_field :repo_link, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :tech_stack, 'Tech Stack' %>
+    <%=
+      form.select :tech_stack,
+                  Project::TECH_OPTIONS,
+                  { prompt: 'Select Options' },
+                  {
+                    class: 'form-control',
+                    multiple: true,
+                    size: 5
+                  }
+    %>
+  </div>
+
+  <div class="form-group">
     <%= form.label :content %>
     <%= form.rich_text_area :content %>
   </div>
