@@ -32,8 +32,8 @@ Tables:
 # Twain To Do
 # =====================================
 
-1. Generate CoverUploader
-2. Configure Carrierwave with AWS
+# 1. Generate CoverUploader
+# 2. Configure Carrierwave with AWS
 3. Build out and style views
 4. TESTS
 5. Install Devise
@@ -43,6 +43,9 @@ Tables:
 9. Enable CORS for controllers' JSON format
 10. Build React app for CRUD index view
 11. Require login to access everything
+12. Add view generator templates from portfolio-2
+13. Build Home Page
+14. Run Twain on port 3001
 
 
 # =========================================================

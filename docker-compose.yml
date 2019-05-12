@@ -22,7 +22,7 @@ services:
     # command: bash -c "foreman start -f Procfile.dev-server"
     # command: bundle exec puma -c config/puma.rb
     volumes:
-      - .:/app
+      - .:/twain
     ports:
       - 3000:3000
     environment:
