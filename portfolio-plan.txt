@@ -28,6 +28,19 @@ Tables:
 3. Labs - Experimental Labs
 
 
+# =====================================
+# Twain To Do
+# =====================================
+
+1. Build CoverUploader
+2. Configure Carrierwave with AWS
+3. Build out and style views
+4. TESTS
+5. Install Devise
+6. Figure out ENV variable system
+7. 
+
+
 # =========================================================
 # Portfolio Client
 # =========================================================
