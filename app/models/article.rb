@@ -1,3 +1,10 @@
+##
+# @file app/models/article.rb
+#
+# @model Article
+#
+# @description Model for Articles Table
+#
 class Article < ApplicationRecord
   # == Extensions ===========================================================
 
@@ -20,6 +27,10 @@ class Article < ApplicationRecord
   # == Callbacks ============================================================
 
   # == Class Methods ========================================================
+
+  def self.attributes
+    attribute_names.map(&:to_sym)
+  end
 
   # == Instance Methods =====================================================
 end

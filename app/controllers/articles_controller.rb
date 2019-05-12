@@ -1,3 +1,10 @@
+##
+# @file app/controllers/articles_controller.rb
+#
+# @class ArticlesController
+#
+# @description Controller for Articles CRUD
+#
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
@@ -69,6 +76,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.fetch(:article, {})
+      params.require(:article).permit Article.attributes
     end
 end

@@ -33,5 +33,9 @@ class Project < ApplicationRecord
 
   # == Class Methods ========================================================
 
+  def self.attributes
+    attribute_names.map(&:to_sym)
+  end
+
   # == Instance Methods =====================================================
 end
