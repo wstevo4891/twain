@@ -32,7 +32,7 @@ export default class App extends React.Component {
         <NavbarToggler onClick={this.toggle} />
 
         <Collapse isOpen={this.state.isOpen} navbar>
-          <Nav className="ml-auto" navbar>
+          <Nav className="mr-auto" navbar>
             <NavItem>
               <NavLink href="/projects">Projects</NavLink>
             </NavItem>
