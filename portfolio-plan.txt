@@ -20,7 +20,11 @@ of Rails 6 and other software.
 
 Tables:
 1. Projects - Portfolio Projects
+     - has_rich_text :text
+
 2. Articles - Blog articles
+     - has_rich_text :text
+
 3. Labs - Experimental Labs
 
 
