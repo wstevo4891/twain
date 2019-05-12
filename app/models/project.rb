@@ -21,7 +21,7 @@ class Project < ApplicationRecord
 
   # == Relationships ========================================================
 
-  has_rich_text :text
+  has_rich_text :content
 
   # == Validations ==========================================================
 

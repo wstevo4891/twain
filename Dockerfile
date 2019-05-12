@@ -37,11 +37,11 @@ RUN npm install -g yarn
 RUN yarn install --check-files
 
 # Copy the main application.
-COPY . /twain
+COPY . .
 
 # Expose port 3000 to the Docker host, so we can access it
 # from the outside.
-EXPOSE 3000
+# EXPOSE 3000
 
 # The main command to run when the container starts. Also
 # tell the Rails dev server to bind to all interfaces by
