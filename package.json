@@ -15,8 +15,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "reactstrap": "^8.0.0",
-    "trix": "^1.0.0",
-    "turbolinks": "^5.2.0"
+    "trix": "^1.0.0"
   },
   "version": "0.1.0",
   "devDependencies": {

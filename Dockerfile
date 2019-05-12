@@ -37,7 +37,7 @@ RUN npm install -g yarn
 RUN yarn install --check-files
 
 # Copy the main application.
-COPY . ./
+COPY . /twain
 
 # Expose port 3000 to the Docker host, so we can access it
 # from the outside.
@@ -49,6 +49,6 @@ EXPOSE 3000
 
 # CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
 
-CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
+# CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
 
 # CMD ["puma"]
