@@ -1,6 +1,11 @@
-<h1>Editing Project</h1>
+<%# app/views/projects/new.html.erb %>
 
-<%= render 'form', project: @project %>
+<div class="container pb-5 mb-5">
+  <h1 class="text-center mt-4 mb-4">Edit <%= @project.title %></h1>
 
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10">
+      <%= render 'form', project: @project %>
+    </div>
+  </div>
+</div>
