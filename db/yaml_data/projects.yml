@@ -13,10 +13,10 @@
     - rammounts-motorcycle-wizard-complete.jpg
   site_link: https://rammount.com/
   repo_link:
-  description: E-Commerce website for RAM Mounts, a manufacturer of durable
+  summary: E-Commerce website for RAM Mounts, a manufacturer of durable
                mounting systems for mobile devices. Built in Ruby on Rails
                with Elasticsearch.
-  summary:
+  content:
     - While working on this legacy codebase I went from building new
       webpages and implementing Bootstrap styling to constructing full-stack
       systems for heavily AJAX-ed features, creating new Elasticsearch indices,
@@ -57,9 +57,9 @@
     - bolt-network-the-hangover.jpg
   site_link: https://bolt-network-wstevo4891.herokuapp.com/
   repo_link: https://github.com/wstevo4891/bolt-network
-  description: A Ruby on Rails side project where I attempt to reverse engineer
+  summary: A Ruby on Rails side project where I attempt to reverse engineer
                the UI of Netflix.
-  summary:
+  content:
     - Bolt Network is an on-going attempt to reverse engineer Netflix's
       UI effects. What began as a practice project on Codecademy is now a
       large application with 80 movie records that uses Ruby algorithms,
@@ -103,9 +103,9 @@
 
   site_link: https://dry-tor-4505.herokuapp.com/
   repo_link: https://github.com/wstevo4891/griffen
-  description: Ruby on Rails website using CarrierWave, Cocoon, Wicked_PDF,
+  summary: Ruby on Rails website using CarrierWave, Cocoon, Wicked_PDF,
                Dropbox-SDK, and Ruby-Zoho for processing application forms.
-  summary:
+  content:
     - Griffen Financial is a startup that aims to provide specialized
       credit/debit card readers for legal marijuana merchants. The client wanted
       a site to advertise the devices and provide online application forms for
@@ -146,9 +146,9 @@
     - baldwin-interiors-glassware.jpg
   site_link: https://vast-reef-1675.herokuapp.com/
   repo_link: https://github.com/wstevo4891/atbaldwin
-  description: E-commerce website for a small business built in Ruby on Rails
+  summary: E-commerce website for a small business built in Ruby on Rails
                with the Spree engine.
-  summary:
+  content:
     - Ruby on Rails e-commerce website for a home furnishings and gift store in
       Columbus, GA. The client wanted a site to promote the store, show its
       location, and offer its products for sale online. With the Spree
@@ -182,9 +182,9 @@
     - suggestion-box-laffy-taffy.jpg
   site_link: https://suggestion-box-mean.herokuapp.com/
   repo_link: https://github.com/wstevo4891/suggestion_box_mean
-  description: MEAN Stack app for co-workers to make anonymous
-               suggestions for improving their work space, meetings, etc.
-  summary:
+  summary: MEAN Stack app for co-workers to make anonymous
+           suggestions for improving their work space, meetings, etc.
+  content:
     - Suggestion Box is a tool for co-workers to make anonymous suggestions for
       improving their work space, meetings, etc. After building this simple app
       for an AngularJS course final project, I went a step further and put it on
