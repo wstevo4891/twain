@@ -1,0 +1,607 @@
+---
+-
+  meta_title: PDF Uploads with Dropbox API | Full Stack Rails Developer | Eric Stephenson
+  meta_description: How to integrate a Rails application with the Dropbox API.
+                    Upload PDF files to Dropbox with Dropbox-SDK, Wicked PDF,
+                    and WKHTMLTOPDF.
+  title: PDF Uploads with Dropbox API
+  slug: pdf-uploads-with-dropbox-api
+  cover: dropbox-api.png
+  date:
+    - 2016
+    - 04
+    - 26
+  description: My first Rails project was centered around some large
+               application forms and the client wanted finished copies uploaded
+               to his Dropbox account. Using Dropbox-SDK along with Wicked PDF
+               and WKHTMLTOPDF, I was able to make this happen. First, I made a
+               Dropbox app on the client's account for receiving files, then I
+               installed the gems and pasted the app's secret keys in the
+               Dropbox initializer. In the form's controller, I used Wicked PDF
+               to make PDF copies of saved forms and the Dropbox API to upload
+               them to the client's Dropbox app.
+  sections:
+    -
+      header: Gems
+      image: ''
+      body: "To implement the same functionality, you'll need to add these gems
+            to your Gemfile:\n
+
+            ```ruby\n
+            gem 'dropbox-sdk'\n
+            gem 'wicked_pdf'\n
+            gem 'wkhtmltopdf'\n
+            ```"
+    -
+      header: Getting Started
+      image: ''
+      body: "First, you'll need a Dropbox account.\n
+
+            **Step 1.** Get a Dropbox account.\n
+
+            **Step 2.** Got one? Good, now go to
+            https://www.dropbox.com/developers
+            and sign in if needed.\n
+
+            **Step 3.** Click on 'Create your app' in the middle of the page
+            below the picture.\n
+
+            **Step 4.** Choose 'Dropbox API' and 'App folder'. Name your app,
+            and click on 'Create App'\n
+
+            **Step 5.** On this page, you will see 'App Key' and 'App Secret'
+            on the row below 'App folder name'. Click on 'show' to see the
+            'App secret', now copy these keys and paste them on the appropriate
+            lines in config/initializers/dropbox_config.rb.\n
+
+            **Step 6.** Below 'App Key' and 'App Secret' you will see the
+            'Oauth2' row. At the bottom of this row is 'Generated Access token'
+            and a 'Generate' button beneath. Click on 'Generate', copy the key,
+            and paste it between the quotes on the OAUTH2_ACCESS_TOKEN line in
+            dropbox_config.rb.\n
+
+            **WARNING:** If you're going to push this project to a public
+            repository, you should assign those keys to environment variables
+            ( ENV['DROPBOX_SECRET_KEY'] ). I like using the 'dotenv-rails' gem
+            for setting these up. You have a .env.local file where your
+            environment variables are defined for development, and you include
+            that file in your .gitignore. Now you can show everyone your awesome
+            code without giving them the access keys to mess around with your
+            Dropbox app.\n
+
+            If you deploy to Heroku, you'll assign your environment variables
+            manually like so:\n
+
+            $ heroku config:set DROPBOX_SECRET_KEY='...'"
+
+    - header: Configuring Your PDFs
+      image: ''
+      body: "**Step 7.** Let's say you have a model called Order, and you want
+            a PDF of each completed order sent to your Dropbox account. For this
+            to work, you'll need a pdf layout and a pdf view of your form, AND
+            you'll need to allow pdf mime_types.\n
+
+            First, we'll set the mime_type. Add this line to
+            /config/initializers/mime_types.rb:\n
+
+            ```ruby\n
+            # Mime::Type.register 'application/pdf', :pdf\n
+            ```\n
+
+            Next, create a new file in your /views/layouts folder called
+            pdf.html.erb.  This file will be a copy of your application.html.erb
+            with a few differences.\n
+
+            Wicked PDF requires special tags to load the asset pipeline and
+            images. In the head of pdf.html.erb, swap out the javscript and
+            stylesheet erb tags with these:\n
+
+            ```ruby\n
+            <%= wicked_pdf_stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>\n
+            <%= wicked_pdf_javascript_include_tag 'application', 'data-turbolinks-track' => true %>\n
+            ```\n
+
+            If you have any images (like a company logo) in the layout, use the
+            wicked_pdf_image_tag to render them:\n
+
+            ```ruby\n
+            <%= wicked_pdf_image_tag('Logo.jpg') %>\n
+            ```\n
+
+            Next, create a new file in /views/orders called edit.pdf.erb. Copy
+            the contents of your form here and top it with an h1 to display the
+            name of the form."
+    -
+      header: Controller Logic
+      image: ''
+      body: "**Step 8.** Lastly, we need to write some controller methods. In
+            Orders_Controller.rb you'll start with a few methods that save the
+            order as a PDF in the /tmp directory.\n
+
+            ```ruby\n
+            def filename\n
+            \_\_@order.user_id.to_s + '_' + @order.business\n
+            end\n
+
+            def save_path\n
+            \_\_Rails.root.join('tmp',\"#{filename}.order.pdf\")\n
+            end\n
+            ```\n
+
+            You'll want each pdf to have a unique name. Here, I've added the
+            user_id to the name of the user's business (which is a required
+            field in the form), but you can make it whatever you like.\n
+
+            The save_path method simply defines a save path in the /tmp
+            directory for the pdf to sit while it waits to be uploaded. After
+            the upload, we'll delete this temporary file to keep our app clean.\n
+
+            ```ruby\n
+            def save_as_pdf\n
+            \_\_pdf = render_to_string pdf: 'order.pdf',\n
+            \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_layout: 'pdf.html.erb',\n
+            \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_template: 'orders/edit.pdf.erb',\n
+            \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_encoding: 'UTF-8',\n
+            \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_wkhtmltopdf: 'bin/wkhtmltopdf',\n
+            \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_page_height: '20in',\n
+            \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_page_width: '12em'\n
+            \_\_File.open(save_path, 'wb') do |file|\n
+            \_\_\_\_file << pdf\n
+            \_\_end\n
+            end\n
+            ```\n
+
+            This method uses wicked_pdf options to designate 'pdf.html.erb' as our
+            layout, 'edit.pdf.erb' as the view, the path to our html/pdf converter,
+            wkhtmltopdf, in the /bin folder, and the page dimensions (you should
+            play around with these to get them just right)."
+    -
+      header: Using The Dropbox API
+      image: ''
+      body: "Now we're ready for a method that uses the Dropbox API:\n
+
+            ```ruby\n
+            def dropbox_upload(bool)\n
+            \_\_save_as_pdf\n
+            \_\_file = open(save_path)\n
+            \_\_client = DropboxClient.new(OAUTH2_ACCESS_TOKEN)\n
+            \_\_response = client.put_file(filename + '.order.pdf', file, overwrite=bool)\n
+            \_\_File.delete(save_path)\n
+            end\n
+            ```\n
+
+            This method will be called in 'create' and 'update.' First it save the
+            file as a pdf in /tmp, then it sets the variable 'file' to that save
+            path. The variable 'client' is set to a new DropboxClient instance and
+            passes in your OAUTH access token. The response calls the 'put_file'
+            (upload) method on the client variable and defines the name of the file
+            that will be uploaded.  If you want the files to go to a specifc folder
+            in your Dropbox app, just put a string of that folder name before +
+            filename. Lastly, the pdf in /tmp is deleted.\n
+
+            You may have noticed 'overwrite=bool'. If you want to overwrite a file
+            in Dropbox with a similar name, which you want to do on update, you call
+            the method with 'true' as its parameter. I set the parameter to 'false'
+            on create.\n
+
+            Let's see how this looks in 'create' and 'update'.\n
+
+            **NOTE:** I've set up orders to belong_to users, so I'm using
+            @user.create_order for the create method. I'm also using Devise so I can
+            use its current_user method.\n
+
+            ```ruby\n
+            def create\n
+            \_\_@order = @user.create_order(order_params)\n
+
+            \_\_respond_to do |format|\n
+            \_\_\_\_if @order.save\n
+            \_\_\_\_\_\_dropbox_upload(false)\n
+            \_\_\_\_\_\_format.html { redirect_to current_user, notice: 'Your order has been processed' }\n
+            \_\_\_\_\_\_format.json { render :show, status: :created, location: @order }\n
+            \_\_\_\_else\n
+            \_\_\_\_\_\_format.html { render :new }\n
+            \_\_\_\_\_\_'format.json { render json: @order.errors, status: :unprocessable_entity }'\n
+            \_\_\_\_end\n
+            \_\_end\n
+            end\n
+
+            def update\n
+            \_\_respond_to do |format|\n
+            \_\_\_\_if @order.update(order_params)\n
+            \_\_\_\_\_\_dropbox_upload(true)\n
+            \_\_\_\_\_\_'format.html { redirect_to current_user, notice: 'Order was successfully updated' }'\n
+            \_\_\_\_\_\_'format.json { render :show, status: :ok, location: @order }'\n
+            \_\_\_\_else\n
+            \_\_\_\_\_\_format.html { render :edit }\n
+            \_\_\_\_\_\_'format.json { render json: @order.errors, status: :unprocessable_entity }'\n
+            \_\_\_\_end\n
+            \_\_end\n
+            end\n
+            ```\n
+
+            Now you're all set!  When a user saves an order you will receive a pdf
+            copy in your Dropbox app.  If the pdf looks wonky, you may need to
+            fiddle with the CSS related to your pdf.html.erb layout file and the
+            page dimensions in the save_as_pdf method.  Make SURE that you set
+            enabled pdfs in your mime_types or you won't get a pdf at all.\n
+
+            Thanks for reading and happy uploading!"
+-
+  meta_title: A Fully AJAX-ified Index Table | Full Stack Rails Developer | Eric Stephenson
+  meta_description: How to use AJAX to update an index table in Ruby on Rails.
+  title: A Fully AJAX-ified Index Table
+  slug: fully-ajaxified-index-table
+  cover: ajax-blue.jpg
+  date:
+    - 2016
+    - 04
+    - 28
+  description: My on-going side project to recreate Netflix's front end, Bolt
+               Network, has some nifty do-dads, one being that all CRUD actions
+               in the Genres index are executed with AJAX. If you're not
+               familiar, AJAX stands for "Asynchronous JavaScript and XML." In
+               human-speak, that means you can click on things that interact
+               with the server without having to navigate somewhere or refresh
+               the web page.
+  sections:
+    -
+      header: Why AJAX Helps
+      image: ''
+      body: In *Agile Web Development with Rails 4*, Sam Ruby says AJAX is for
+            "making browsers suck less." Long before I decided to take Bolt Network
+            from its humble roots as a twenty-minute exercise on Codecademy, I
+            learned how to "AJAX-ify" the delete action in a Rails index table.
+            Instead of having to wait on a page refresh when you delete something,
+            it just disappears in a puff of jQuery...and you can get on with your
+            task of deleting things. In a large app with hundreds or
+            thousands of records, whoever has to clean house when a big batch of
+            that data needs to become trash will not be sane at the end of the day
+            if that delete button doesn't use AJAX.
+    -
+      header: Make Your Delete Button Remote
+      image: ''
+      body: "Fortunately, running the destroy action through AJAX is easy. All you do
+            to the Delete link is add `remote':' true`:\n
+
+            ```ruby\n
+            <%= link_to 'Delete', genre, method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: 'btn delete_genre' %>\n
+            ```\n
+
+            This code tells Rails to process the delete action asynchronously. Note
+            that it has the class `delete_genre`. That will be important later. Now
+            let's have a look at the controller method:\n
+
+            ```ruby\n
+            def destroy\n
+            \_\_@genre.destroy\n
+            \_\_respond_to do |format|\n
+            \_\_\_\_format.html { render :index, notice: 'Genre was deleted' }\n
+            \_\_\_\_format.json { head :no_content }\n
+            \_\_\_\_format.js\n
+            \_\_end\n
+            end\n
+            ```\n
+
+            The only differences between this code and a scaffolded destroy method
+            is A) the HTML renders the :index page (the same page you're already on)
+            and B) `format.js` tells Rails to respond to the request with
+            JavaScript. That JS goes in a little file called destroy.js.erb:\n
+
+            ```java_script\n
+            $('.delete_genre').bind('ajax:success', function() {\n
+            \_\_$(this).closest('tr').fadeOut('slow');\n
+            });\n
+            ```\n
+
+            When a user (hopefully an admin) clicks on the button with class
+            delete_genre, a successful AJAX call will trigger the table row
+            nearest the button to fade out slowly. It's gone, and if you refresh the
+            page it will still be gone. Now the poor sap assigned to delete all
+            those expired records won't show up at the office with a shotgun
+            tomorrow.\n
+
+            Ajaxifying the delete action is not just helpful, it's also relatively
+            harmless. The thing to keep in mind is that the browser won't actually
+            reflect changes to the database until it reloads. So if I delete the
+            Sci-Fi genre from Bolt Network using AJAX, \"Sci-Fi\" will remain in the
+            \"browse\" drop-down menu because those links are loaded with an each loop
+            that grabs all Genre names from the database (@genres = Genre.all) when
+            the page loads. Sci-Fi will ONLY disappear from the browse menu after
+            the browser refreshes and reloads all the genre names from the database.
+            I say \"relatively harmless\" because as an admin, your job is to update
+            the records, not to have a seamless, responsive END-USER experience.
+            The end-users will see the changes you make regardless of whether you
+            refreshed your browser. I guess the point I'm trying to make here is
+            that it's ok for *admin* functions to use AJAX this way, but you don't
+            want *user* functions to disregard REST guidelines. Keep the users on
+            the yellow-brick REST path, safe within its rubber wall confines."
+    -
+      header: AJAX-ify The Create Method
+      image: ''
+      body: "Right! With all that out of the way, let me show you how to AJAX-ify all
+            the CRUD actions in a table. Let's start by jumping to the polar
+            opposite of Destroy: Create!\n
+
+            Here's the controller method:\n
+
+            ```ruby\n
+            def create\n
+            \_\_@genre = Genre.new(genre_params)\n
+
+            \_\_respond_to do |format|\n
+            \_\_\_\_if @genre.save\n
+            \_\_\_\_\_\_format.html { render :index, notice: 'Genre was successfully created'}\n
+            \_\_\_\_\_\_format.json { render :index, status: :created, location: @genre}\n
+            \_\_\_\_\_\_format.js\n
+            \_\_\_\_else\n
+            \_\_\_\_\_\_format.html { render :new }\n
+            \_\_\_\_\_\_format.json { render json: @genre.errors, status: :unprocessable_entity }\n
+            \_\_\_\_end\n
+            \_\_end\n
+            end\n
+            ```\n
+
+            Nothing new here, all you do is `render :index` instead of redirecting
+            and add that `format.js`. We'll have a look at create.js.erb in a bit.
+            First I want you to see the index view and the genre and form partials:\n
+
+            views/genres/index.html.erb\n
+
+            ```erb\n
+            <div class=\"container\">\n
+            \_\_<div class=\"admin-row text-center\">\n
+            \_\_\_\_<h1>Listing Genres</h1>\n
+            \_\_\_\_<br>\n
+            \_\_</div>\n
+
+            \_\_<div class=\"row text-center\">\n
+            \_\_\_\_<h2 id=\"notice\"><%= notice %></h2>\n
+            \_\_</div>\n
+
+            \_\_<div class=\"row\">\n
+            \_\_\_\_<div class=\"jumbotron-index col-sm-10 col-sm-offset-1\">\n
+            \_\_\_\_\_\_<table class=\"table table-striped\">\n
+            \_\_\_\_\_\_\_\_<thead>\n
+            \_\_\_\_\_\_\_\_\_\_<tr>\n
+            \_\_\_\_\_\_\_\_\_\_\_\_<th>ID</th>\n
+            \_\_\_\_\_\_\_\_\_\_\_\_<th>Name</th>\n
+            \_\_\_\_\_\_\_\_\_\_\_\_<th class=\"col-sm-4\"></th>\n
+            \_\_\_\_\_\_\_\_\_\_\_\_<th></th>\n
+            \_\_\_\_\_\_\_\_\_\_</tr>\n
+            \_\_\_\_\_\_\_\_</thead>\n
+
+            \_\_\_\_\_\_\_\_<tbody>\n
+            \_\_\_\_\_\_\_\_\_\_<%= render @genres %>\n
+            \_\_\_\_\_\_\_\_\_\_<%= render 'form' %>\n
+            \_\_\_\_\_\_\_\_</tbody>\n
+            \_\_\_\_\_\_</table>\n
+            \_\_\_\_</div>\n
+            \_\_</div>\n
+            \_\_<br>\n
+            </div>\n
+            ```\n
+
+            views/genres/_genre.html.erb\n
+
+            ```erb\n
+            <tr id=\"genre_<%= genre.id %>\">\n
+            \_\_<td><%= genre.id %></td>\n
+            \_\_<td><%= genre.name %></td>\n
+            \_\_<td></td>\n
+            \_\_<td>\n
+            \_\_\_\_<%= link_to 'Edit', edit_genre_path(genre), remote: true, class: 'btn' %>\n
+            \_\_\_\_<%= link_to 'Delete', genre, method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: 'btn delete_genre' %>\n
+            \_\_</td>\n
+            </tr>\n
+            ```\n
+
+            views/genres/_form.html.erb\n
+
+            ```erb\n
+            <%= form_for @genre, html: { class: 'form-inline new-genre' }, remote: true do |f| %>\n
+            \_\_<tr class=\"new-genre\">\n
+            \_\_\_\_<td>New Genre</td>\n
+            \_\_\_\_<div class=\"form-group\">\n
+            \_\_\_\_\_\_<td><%= f.label :name %></td>\n
+            \_\_\_\_\_\_<td><%= f.text_field :name, class: 'form-control' %></td>\n
+            \_\_\_\_</div>\n
+            \_\_\_\_<td>\n
+            \_\_\_\_\_\_<%= f.submit 'Add', class: 'btn' %>\n
+            \_\_\_\_</td>\n
+            \_\_</tr>\n
+
+            \_\_<% if @genre.errors.any? %>\n
+            \_\_\_\_<div id=\"error_explanation\">\n
+            \_\_\_\_\_\_<h2><%= pluralize(@genre.errors.count, 'error') %> prohibited this movie from being saved:</h2>\n
+
+            \_\_\_\_\_\_<ul>\n
+            \_\_\_\_\_\_\_\_<% @genre.errors.full_messages.each do |message| %>\n
+            \_\_\_\_\_\_\_\_\_\_<li><%= message %></li>\n
+            \_\_\_\_\_\_\_\_<% end %>\n
+            \_\_\_\_\_\_</ul>\n
+            \_\_\_\_</div>\n
+            \_\_<% end %>\n
+            <% end %>\n
+            ```\n
+
+            The genres are listed in a striped table with an inline form to add a
+            new one at the bottom. Notice that `remote: true` finds itself in the
+            'form_for' tag's options this time. That means the entire form will be
+            submitted asynchronously through AJAX. Ready to see what create.js.erb
+            does?\n
+
+            views/genres/create.js.erb\n
+
+            ```java_script\n
+            $('tbody tr:last').before(<%= j render(@genre) %>).fadeIn('slow');\n
+            ```\n
+
+            It turns out that AJAX is a pretty simple thing (at least at this
+            point). The jQuery targets the last row in the table body, which is the
+            form, and slides in the new record \"before\" it. The
+            `<%= j render() %>` tag is extremely useful for this kind of thing.
+            It also goes by the name of `escape_javascript`, but `j render` is less
+            to type. Since this code is running through the controller's create
+            method, the instance variable, @genre, is equal to Genre.new: it creates
+            a new genre entry."
+    -
+      header: AJAX-ifying Edit and Update
+      image: ''
+      body: "Now we leave the safe confines of Create and Destroy, and enter the far
+            trickier territory of Edit and Update. I wanted the edit action to be an
+            inline form, like create, that appears when you click on the \"Edit\"
+            link, but this proved far more difficult than I imagined.\n
+
+            Edit.js.erb seemed simple enough, just swap out the nearest table row to
+            the clicked link with an edit partial:\n
+
+            views/genres.edit.js.erb\n
+
+            ```java_script\n
+            $('tr#<%= dom_id(@genre) %>').replaceWith('<%= j render('edit') %>');\n
+            ```\n
+
+            Well, I ended up using the neat `dom_id` method to locate the exact row
+            to swap out. Remember, this goes through the Edit action where
+            `@genre = Genre.find(params[:id])`. The jQuery finds the table row with
+            the same id as the rendered genre partial on whose edit button I
+            clicked, which is helped by the fact that each partial has a unique id:
+            `<tr id=\"genre_<%= genre.id %>\">`\n
+
+            So there you go, swap out that row with an edit partial that contains a
+            table row wrapped in a form.\n
+
+            WRONG!\n
+
+            In Ye Olde Book of HTML it hath been decreed that thou shalt not wrap a
+            table row with a form, lest ye call upon thyself the wrath of the
+            internet gods...and rabbits with pointy teeth.\n
+
+            To put it simply, that form-wrapped table row rendered hideously. It
+            didn't look at all like what I wanted: a simple inline form on a row.
+            The solution: put the form in a table cell `<td></td>`. It looks ugly
+            and squished to the left...unless you stretch that cell to the length of
+            the table:\n
+
+            views/genres/_edit.html.erb\n
+
+            ```erb\n
+            <tr id=\"edit-genre\">\n
+            \_\_<td colspan=12>\n
+            \_\_\_\_<%= form_for(@genre, html: { class: 'form-inline' }, remote: true) do |f| %>\n
+            \_\_\_\_\_\_<div class=\"form-group col-sm-6\">\n
+            \_\_\_\_\_\_\_\_<%= f.label 'Edit' %>\n
+            \_\_\_\_\_\_\_\_<%= f.label :name %>\n
+            \_\_\_\_\_\_\_\_<%= f.text_field :name, class: 'form-control', placeholder: @genre.name %>\n
+            \_\_\_\_\_\_</div>\n
+            \_\_\_\_\_\_<%= f.submit 'Save', class: 'btn' %>\n
+            \_\_\_\_<% end %>\n
+            \_\_</td>\n
+            </tr>\n
+            ```\n
+
+            Success! Business!\n
+
+            All that remained was update.js.erb, which was a mirror image of
+            edit.js.erb:\n
+
+            views/genres/update.js.erb\n
+
+            ```java_script\n
+            $('#edit-genre').replaceWith('<%= j render(@genre) %>');\n
+            ```\n
+
+            It grabs the edit form by its id and swaps it with the genre partial of
+            that particular record. Done!\n
+
+            If you'd like to see this in action, head over to 'WORK', click on the
+            Bolt Network image, and click the Visit Website button.\n
+
+            Happy Ajaxing!"
+-
+  meta_title: A Fully AJAX-ified Index Table | Full Stack Rails Developer | Eric Stephenson
+  meta_description: Set up a Ruby on Rails application to use live reloading in
+                    development with Guard LiveReload.
+  title: Live-reloading with Guard LiveReload
+  slug: live-reloading-with-guard-live-reload
+  cover: livereload-with-rails-4.jpg
+  date:
+    - 2016
+    - 04
+    - 28
+  description: "After building some demo apps in Angular and being amazed by the
+               live reloading feature of Grunt and Gulp, I desperately wanted
+               to do this in Rails development. Two articles, multiple Github
+               docs, and several hours of trial and error later, I got the damn
+               thing to work! It's a somewhat tricky setup and requires an
+               additional console window to the one running your rails server,
+               but the fact that I will never again have to wait 30 - 50
+               seconds to see the changes to my CSS3 animations puts a big
+               stupid grin on my face."
+  sections:
+    -
+      header: Gems
+      image: ''
+      body: "\"So...,\" you might ask, \"what gems am I installing?\" Glad you
+            asked, reader.\n
+
+            ```ruby\n
+            group :development do\n
+            \_\_gem 'guard', require':' false\n
+            \_\_gem 'guard-livereload', require':' false\n
+            \_\_gem 'rack-livereload'\n
+            \_\_gem 'rb-fsevent', require':' false\n
+            \_\_gem 'rack-mini-profiler'\n
+            end\n
+            ```\n
+
+            [Guard](https://github.com/guard/guard) is a command line tool used to
+            automate tasks, specifically to \"avoid mundane, repetitive actions and
+            commands such as \"relaunching\" tools after changing source files or
+            configurations.\" Sounds right up our alley.  To get live reloading
+            working with Guard, we add the \"guard-livereload\" plugin and
+            \"rack-livereload\". Bundle 'rb-fsevent' if you're using a Mac. Lastly, I
+            added the wonderful 'rack-mini-profiler' because we're doing this thing
+            we're doing for Performance!  Mini-profiler adds a little tab to the top
+            left of the browser window that lets you know how long the last request
+            took.  It expands on click to give the timing on specific actions in the
+            loading process. It is something you should always have in development."
+    -
+      header: Making a Guardfile
+      image: ''
+      body: "Right, so you bundle installed the gems, now you need to create a
+            Guardfile:\n
+
+            $ guard init livereload\n
+
+            This command will create a Guardfile with live-reload settings. TL;DR
+            the settings use regex to watch for changes in asset and view files.
+            After launching a rails server, you need another console window to
+            launch Guard from your app's root directory:\n
+
+            $ guard -P livereload  ( add --debug to get more detailed logs )\n
+
+            Now, whenever you change your CSS, JavaScript, or images, Guard will
+            detect it and tell the browser to reload."
+    -
+      header: Setting Up Your CSS
+      image: ''
+      body: "Of course, it depends on how you've set up the asset pipeline to handle
+            your CSS.  In my case, I'm being old school and using
+            \"//= require foobar\" for each stylesheet in application.css. There's a
+            cleaner setup for Sass in Rails (described
+            [here](http://www.mattboldt.com/organizing-css-and-sass-rails/)), but
+            the advantage of using Sprockets' //= require is that the page only has
+            to reload that one file instead of the entire compiled stylesheet."
+    -
+      header: Chrome LiveReload
+      image: ''
+      body: "One last thing: I have not been able to make this work on Chrome without
+            the [Chrome LiveReload Extension](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en).
+            When it's installed, you'll see the LiveReload icon in the upper-right
+            of your screen. If the dot in the middle is solid, Guard is connected to
+            the browser and vice versa. If the dot is empty, just click it to
+            connect.\n
+
+            Have a great time live-reloading!"

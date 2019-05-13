@@ -1,0 +1,38 @@
+**Step 7.** Let's say you have a model called Order, and you want
+a PDF of each completed order sent to your Dropbox account. For this
+to work, you'll need a pdf layout and a pdf view of your form, AND
+you'll need to allow pdf mime_types.
+
+First, we'll set the mime_type. Add this line to
+/config/initializers/mime_types.rb:
+
+First, we'll set the mime_type. Add this line to
+/config/initializers/mime_types.rb:
+
+```ruby
+# Mime::Type.register 'application/pdf', :pdf
+```
+
+Next, create a new file in your /views/layouts folder called
+pdf.html.erb.  This file will be a copy of your application.html.erb
+with a few differences.
+
+Wicked PDF requires special tags to load the asset pipeline and
+images. In the head of pdf.html.erb, swap out the javscript and
+stylesheet erb tags with these:
+
+```ruby
+<%= wicked_pdf_stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+<%= wicked_pdf_javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+```
+
+If you have any images (like a company logo) in the layout, use the
+wicked_pdf_image_tag to render them:
+
+```ruby
+<%= wicked_pdf_image_tag('Logo.jpg') %>
+```
+
+Next, create a new file in /views/orders called edit.pdf.erb. Copy
+the contents of your form here and top it with an h1 to display the
+name of the form.
