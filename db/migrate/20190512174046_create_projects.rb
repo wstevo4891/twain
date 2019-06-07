@@ -7,6 +7,7 @@ class CreateProjects < ActiveRecord::Migration[6.0]
       t.string   :title
       t.text     :summary
       t.string   :cover
+      t.string   :images, array: true, default: []
       t.string   :site_link
       t.string   :repo_link
       t.string   :highlights, array: true, default: []

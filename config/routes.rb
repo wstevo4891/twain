@@ -11,4 +11,15 @@ Rails.application.routes.draw do
   # ===========================================================================
   resources :articles
   resources :projects
+
+  # ===========================================================================
+  # API Routes
+  # ===========================================================================
+  namespace :api do
+    # Projects index
+    get '/projects', to: 'projects#index'
+
+    # Projects show
+    get '/projects/:slug', to: 'projects#show'
+  end
 end

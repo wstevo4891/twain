@@ -38,7 +38,6 @@
     - MySQL
     - jQuery
     - HTML5
-    - CSS3
     - SASS
     - Bootstrap 3
     - Vagrant
@@ -55,10 +54,10 @@
     - bolt-network-hover-1.jpg
     - bolt-network-hover-2.jpg
     - bolt-network-the-hangover.jpg
-  site_link: https://bolt-network-wstevo4891.herokuapp.com/
-  repo_link: https://github.com/wstevo4891/bolt-network
+  site_link: https://lit-anchorage-35230.herokuapp.com/
+  repo_link: https://github.com/wstevo4891/bolt-network-react
   summary: A Ruby on Rails side project where I attempt to reverse engineer
-               the UI of Netflix.
+           the UI of Netflix.
   content:
     - Bolt Network is an on-going attempt to reverse engineer Netflix's
       UI effects. What began as a practice project on Codecademy is now a
@@ -79,13 +78,13 @@
     - Admin record interface with AJAX
   tech_stack:
     - Ruby on Rails
+    - ReactJS
     - PostgreSQL
     - Amazon S3
-    - jQuery
     - HTML5
-    - CSS3
     - SASS
-    - Bootstrap 3
+    - Bootstrap 4
+    - Docker
     - Heroku
 -
   meta_title: Griffen Financial | Full Stack Rails Developer | Eric Stephenson

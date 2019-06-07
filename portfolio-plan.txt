@@ -11,8 +11,8 @@ The portfolio server in Rails 6 with React
 Twain is where I will build the GUI for my admin interface
 and store all portfolio data. I will use it for writing blog
 posts, adding projects to the portfolio, and building
-experimental labs to try out various features
-of Rails 6 and other software.
+experimental labs to try out various features of Rails 6
+and other software.
 
 # =====================================
 # Twain Database
@@ -34,10 +34,10 @@ Tables:
 
 # 1. Generate CoverUploader
 # 2. Configure Carrierwave with AWS
-3. Build out and style views
+# 3. Build out and style views
 4. TESTS
 5. Install Devise
-6. Figure out ENV variable system
+# 6. Figure out ENV variable system
 7. Persist Development Database
 8. Enable gem bundling during development
 9. Enable CORS for controllers' JSON format
@@ -45,7 +45,7 @@ Tables:
 11. Require login to access everything
 12. Add view generator templates from portfolio-2
 13. Build Home Page
-14. Run Twain on port 3001
+# 14. Run Twain on port 3001
 
 
 # =========================================================
