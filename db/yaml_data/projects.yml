@@ -43,8 +43,8 @@
     - Vagrant
 -
   meta_title: Bolt Network | Full Stack Rails Developer | Eric Stephenson
-  meta_description: Reverse engineer Netflix UI effects in a Ruby on Rails
-                    application using jQuery, CSS3, and Amazon S3.
+  meta_description: Reverse engineer Netflix UI and features in a Ruby on Rails
+                    application using ReactJS, PostgreSQL, and Amazon S3.
   title: Bolt Network
   slug: bolt-network
   cover: bolt-network-cover.jpg

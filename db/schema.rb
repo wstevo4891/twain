@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2019_05_12_174600) do
     t.string "title"
     t.text "summary"
     t.string "cover"
+    t.string "images", default: [], array: true
     t.string "site_link"
     t.string "repo_link"
     t.string "highlights", default: [], array: true
