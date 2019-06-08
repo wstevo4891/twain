@@ -1,10 +1,9 @@
 # app/views/api/projects/_project.json.jbuilder
 
 json.extract! project,
-              :id, :slug, :meta_title, :meta_description, :title, :summary,
-              :site_link, :repo_link, :highlights, :tech_stack
-
-# json.url project_url(project, format: :json)
+              :title, :slug, :meta_title, :meta_description, :summary,
+              :site_link, :repo_link, :description, :features,
+              :apis, :tech_stack
 
 json.url "/projects/#{project.slug}"
 

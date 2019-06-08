@@ -160,6 +160,8 @@
       products to the database with ease.
   features:
     - Customized Spree application
+    - Guided navigation of products
+    - Filtered search results
     - Google Maps embed in footer
   apis:
     - Google Maps
