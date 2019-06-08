@@ -85,6 +85,7 @@ projects.each do |project|
     summary: project['summary'],
     site_link: project['site_link'],
     repo_link: project['repo_link'],
+    description: project['description'],
     features: project['features'],
     apis: project['apis'],
     tech_stack: project['tech_stack']
