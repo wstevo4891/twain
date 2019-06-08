@@ -73,19 +73,20 @@ puts 'Loading projects ========================='
 projects = load_yaml('projects')
 
 projects.each do |project|
-  puts "Loading project: #{project['title']}"
+  puts "Creating project: #{project['title']}"
 
   Project.create!(
-    meta_title: project['meta_title'],
-    meta_description: project['meta_description'],
     title: project['title'],
     slug: project['slug'],
     cover: seed_asset_image(project['cover']),
     images: seed_image_array(project['images']),
+    meta_title: project['meta_title'],
+    meta_description: project['meta_description'],
+    summary: project['summary'],
     site_link: project['site_link'],
     repo_link: project['repo_link'],
-    summary: project['summary'],
-    highlights: project['highlights'],
+    features: project['features'],
+    apis: project['apis'],
     tech_stack: project['tech_stack']
   )
 end
