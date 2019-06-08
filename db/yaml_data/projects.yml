@@ -1,8 +1,5 @@
 ---
--
-  meta_title: RAM Mounts | Full Stack Rails Developer | Eric Stephenson
-  meta_description: E-Commerce Ruby on Rails application for RAM Mounts.
-  title: RAM Mounts
+- title: RAM Mounts
   slug: ram-mounts
   cover: rammounts-cover.jpg
   images:
@@ -11,29 +8,36 @@
     - rammounts-home-footer.jpg
     - rammounts-motorcycle-wizard-initial.jpg
     - rammounts-motorcycle-wizard-complete.jpg
+  meta_title: RAM Mounts | Full Stack Rails Developer | Eric Stephenson
+  meta_description: E-Commerce Ruby on Rails application for RAM Mounts.
+  summary:  E-Commerce website for RAM Mounts, a manufacturer of durable
+            mounting systems for mobile devices. Built in Ruby on Rails
+            with Elasticsearch.
   site_link: https://rammount.com/
   repo_link:
-  summary: E-Commerce website for RAM Mounts, a manufacturer of durable
-               mounting systems for mobile devices. Built in Ruby on Rails
-               with Elasticsearch.
   description:
-    - While working on this legacy codebase I went from building new
-      webpages and implementing Bootstrap styling to constructing full-stack
-      systems for heavily AJAX-ed features, creating new Elasticsearch indices,
-      integrating a module of forms with Jira, slimming down fat models and
-      controllers with refactoring techniques and service objects, and
-      rebuilding our most prominent JavaScript SPA's in ReactJS.
+    - RAM Mounts is a manufacturer of sturdy mounting equipment for a
+      wide range of electronic devices. This e-commerce website is a
+      Ruby on Rails 4 application integrated with Elasticsearch for
+      high-powered full-text search of over 5,000 SKUs.
 
-    - I am currently building multiple JSON API's that fetch data with
-      Elasticsearch queries and a CRUD interface for a new set of landing pages
-      to be stored in Elasticsearch.
-  highlights:
-    - Multi-step mount builders (wizards) running on AJAX and Elasticsearch
-    - Complex system of service objects for main search algorithm
-    - SPA for purchasing mounting systems to mount ELD devices
-    - Mobile-friendly webpages across the board with Bootstrap 3 Grids
+    - While working on this legacy codebase, I went from building new
+      webpages and implementing Bootstrap styling to constructing
+      heavily AJAX-ed search results, Elasticsearch-based APIs, and
+      a variety of Ruby services. To ensure stability and performance,
+      I wrote a substantial test suite using Minitest and Capybara.
+  features:
+    - RAM Mount Builder SPA
+    - Full-text search
+    - Shop All faceted search pages
+    - Mobile-friendly webpages across the board
+    - UPS Street Validation during checkout
+  apis:
+    - UPS
+    - Jira
+    - MailChimp
   tech_stack:
-    - Ruby on Rails
+    - Ruby on Rails 4
     - Elasticsearch
     - MySQL
     - jQuery
@@ -41,11 +45,8 @@
     - SASS
     - Bootstrap 3
     - Vagrant
--
-  meta_title: Bolt Network | Full Stack Rails Developer | Eric Stephenson
-  meta_description: Reverse engineer Netflix UI and features in a Ruby on Rails
-                    application using ReactJS, PostgreSQL, and Amazon S3.
-  title: Bolt Network
+
+- title: Bolt Network
   slug: bolt-network
   cover: bolt-network-cover.jpg
   images:
@@ -54,10 +55,13 @@
     - bolt-network-hover-1.jpg
     - bolt-network-hover-2.jpg
     - bolt-network-the-hangover.jpg
-  site_link: https://lit-anchorage-35230.herokuapp.com/
-  repo_link: https://github.com/wstevo4891/bolt-network-react
+  meta_title: Bolt Network | Full Stack Rails Developer | Eric Stephenson
+  meta_description: Reverse engineer Netflix UI and features in a Ruby on Rails
+                    application using ReactJS, PostgreSQL, and Amazon S3.
   summary: A Ruby on Rails side project where I attempt to reverse engineer
            the UI of Netflix.
+  site_link: https://lit-anchorage-35230.herokuapp.com/
+  repo_link: https://github.com/wstevo4891/bolt-network-react
   description:
     - Bolt Network is an on-going attempt to reverse engineer Netflix's
       features and UI. What began as a practice project on Codecademy is
@@ -65,28 +69,26 @@
       Using ActiveRecord queries to a PostgreSQL database, Bolt-Network
       serves a JSON API to a fully ReactJS front end for displaying and
       searching popular movies.
-  highlights:
+  features:
     - Netflix-style movie carousels
-    - Instant-Results search
+    - Netflix-style instant-results search
     - Genre, Recently Added, and My List pages
     - Like/Dislike and Add to My List buttons
     - Netflix-style mobile menu
+  apis:
+    - IMDB
+    - Amazon S3
   tech_stack:
-    - Ruby on Rails
+    - Ruby on Rails 5
     - ReactJS
     - PostgreSQL
-    - Amazon S3
     - HTML5
     - SASS
     - Bootstrap 4
     - Docker
     - Heroku
--
-  meta_title: Griffen Financial | Full Stack Rails Developer | Eric Stephenson
-  meta_description: Ruby on Rails application showcasing integration with
-                    Dropbox and Zoho API's, PDF form uploads to Dropbox using
-                    Wicked PDF, and dynamic nested forms with Cocoon.
-  title: Griffen Financial
+
+- title: Griffen Financial
   slug: griffen-financial
   cover: griffen-financial-cover.jpg
   images:
@@ -94,11 +96,14 @@
     - griffen-financial-merchant-application.jpg
     - griffen-financial-products-page.jpg
     - griffen-financial-product.jpg
-
+  meta_title: Griffen Financial | Full Stack Rails Developer | Eric Stephenson
+  meta_description: Ruby on Rails application showcasing integration with
+                    Dropbox and Zoho API's, PDF form uploads to Dropbox using
+                    Wicked PDF, and dynamic nested forms with Cocoon.
+  summary: Ruby on Rails website using CarrierWave, Cocoon, Wicked_PDF,
+           Dropbox-SDK, and Ruby-Zoho for processing application forms.
   site_link: https://dry-tor-4505.herokuapp.com/
   repo_link: https://github.com/wstevo4891/griffen
-  summary: Ruby on Rails website using CarrierWave, Cocoon, Wicked_PDF,
-               Dropbox-SDK, and Ruby-Zoho for processing application forms.
   description:
     - Griffen Financial is a startup that aims to provide specialized
       credit/debit card readers for legal marijuana merchants. The client wanted
@@ -112,11 +117,15 @@
       I used Carrierwave for image uploads on the forms and Cocoon for a form
       that needed image uploads from each shareholder or partner of the
       customer's business. In July 2015, the project was put on hold
-      indefinitely. I have since rebuilt Griffen Financial with cleaner code and
-      host a demo on Heroku.
-  highlights:
-    - Integration with Dropbox, Zoho CMS, and Mandrill
+      indefinitely. I have since rebuilt Griffen Financial with cleaner code
+      and host a demo on Heroku.
+  features:
+    - Integration with Dropbox, Zoho CMS, and MailChimp APIs
     - Bootstrap forms with add-and-remove nested models
+  apis:
+    - Dropbox
+    - Zoho CMS
+    - MailChimp
   tech_stack:
     - Ruby on Rails
     - PostgreSQL
@@ -126,11 +135,8 @@
     - Bootstrap 3
     - Ruby APIs
     - Heroku
--
-  meta_title: At Home with Baldwin Interiors | Full Stack Rails Developer | Eric Stephenson
-  meta_description: Ruby on Rails e-commerce application for a small business
-                    built with the Spree engine.
-  title: At Home with Baldwin Interiors
+
+- title: At Home with Baldwin Interiors
   slug: baldwin-interiors
   cover: baldwin-interiors-cover.jpg
   images:
@@ -138,10 +144,13 @@
     - baldwin-interiors-interiors.jpg
     - baldwin-interiors-footer.jpg
     - baldwin-interiors-glassware.jpg
+  meta_title: At Home with Baldwin Interiors | Full Stack Rails Developer | Eric Stephenson
+  meta_description: Ruby on Rails e-commerce application for a small business
+                    built with the Spree engine.
+  summary:  E-commerce website for a small business built in Ruby on Rails
+            with the Spree engine.
   site_link: https://vast-reef-1675.herokuapp.com/
   repo_link: https://github.com/wstevo4891/atbaldwin
-  summary: E-commerce website for a small business built in Ruby on Rails
-               with the Spree engine.
   description:
     - Ruby on Rails e-commerce website for a home furnishings and gift store in
       Columbus, GA. The client wanted a site to promote the store, show its
@@ -149,24 +158,22 @@
       e-commerce engine, the site has user-friendly navigation to all products,
       organized by categories, and a backend that allows the client to add
       products to the database with ease.
-  highlights:
+  features:
     - Customized Spree application
     - Google Maps embed in footer
+  apis:
+    - Google Maps
   tech_stack:
-    - Ruby on Rails
+    - Ruby on Rails 4
     - PostgreSQL
     - Spree Engine
-    - Google Maps API
     - jQuery
     - HTML5
     - SASS
     - Bootstrap 3
     - Heroku
--
-  meta_title: Suggestion Box | Full Stack Ruby and JavaScript Developer | Eric Stephenson
-  meta_description: Simple MEAN Stack application for creating and upvoting
-                    suggestions for the workplace.
-  title: Suggestion Box
+
+- title: Suggestion Box
   slug: suggestion-box
   cover: suggestion-box-home.jpg
   images:
@@ -174,10 +181,13 @@
     - suggestion-box-form.jpg
     - suggestion-box-comments.jpg
     - suggestion-box-laffy-taffy.jpg
-  site_link: https://suggestion-box-mean.herokuapp.com/
-  repo_link: https://github.com/wstevo4891/suggestion_box_mean
+  meta_title: Suggestion Box | Full Stack Ruby and JavaScript Developer | Eric Stephenson
+  meta_description: Simple MEAN Stack application for creating and upvoting
+                    suggestions for the workplace.
   summary: MEAN Stack app for co-workers to make anonymous
            suggestions for improving their work space, meetings, etc.
+  site_link: https://suggestion-box-mean.herokuapp.com/
+  repo_link: https://github.com/wstevo4891/suggestion_box_mean
   description:
     - Suggestion Box is a tool for co-workers to make anonymous suggestions for
       improving their work space, meetings, etc. After building this simple app
@@ -191,9 +201,11 @@
       suggestions and upvoting them, and a suggestion page for commenting on
       individual suggestions and upvoting the comments. Using Bootstrap for
       structure and responsive views, the app displays well on any device."
-  highlights:
-    - Customized Spree application
-    - Google Maps embed in footer
+  features:
+    - Small-text posting
+    - Comment on posts
+    - Up-voting / Down-voting
+  apis:
   tech_stack:
     - AngularJS
     - NodeJS
