@@ -16,7 +16,7 @@
   summary: E-Commerce website for RAM Mounts, a manufacturer of durable
                mounting systems for mobile devices. Built in Ruby on Rails
                with Elasticsearch.
-  content:
+  description:
     - While working on this legacy codebase I went from building new
       webpages and implementing Bootstrap styling to constructing full-stack
       systems for heavily AJAX-ed features, creating new Elasticsearch indices,
@@ -58,24 +58,19 @@
   repo_link: https://github.com/wstevo4891/bolt-network-react
   summary: A Ruby on Rails side project where I attempt to reverse engineer
            the UI of Netflix.
-  content:
+  description:
     - Bolt Network is an on-going attempt to reverse engineer Netflix's
-      UI effects. What began as a practice project on Codecademy is now a
-      large application with 80 movie records that uses Ruby algorithms,
-      complex JavaScript effects, and serves images from Amazon S3. My
-      additions include an animated, fixed navbar, a main slideshow scaled
-      to browser width with jQuery, an animated search form using Regexp,
-      and CSS3-animated carousel sliders built with Ruby and a modified
-      version of Unslider. Using Bootstrap, jQuery, and my own break-point
-      mixins, the views adapt to browser width to display elegantly on any
-      device.
+      features and UI. What began as a practice project on Codecademy is
+      now a Ruby on Rails 5 web application with over 100 movie records.
+      Using ActiveRecord queries to a PostgreSQL database, Bolt-Network
+      serves a JSON API to a fully ReactJS front end for displaying and
+      searching popular movies.
   highlights:
-    - Netflix-style carousels on homepage that load with a Ruby algorithm
-    - Carousels mimic Netflix hover effects with CSS3
-    - Main slideshow adapts to browswer width using jQuery
-    - Search bar mimics Netflix animation and searches titles with Regular Expressions
-    - Navbar achieved shadowing effects of Netflix navbar
-    - Admin record interface with AJAX
+    - Netflix-style movie carousels
+    - Instant-Results search
+    - Genre, Recently Added, and My List pages
+    - Like/Dislike and Add to My List buttons
+    - Netflix-style mobile menu
   tech_stack:
     - Ruby on Rails
     - ReactJS
@@ -104,7 +99,7 @@
   repo_link: https://github.com/wstevo4891/griffen
   summary: Ruby on Rails website using CarrierWave, Cocoon, Wicked_PDF,
                Dropbox-SDK, and Ruby-Zoho for processing application forms.
-  content:
+  description:
     - Griffen Financial is a startup that aims to provide specialized
       credit/debit card readers for legal marijuana merchants. The client wanted
       a site to advertise the devices and provide online application forms for
@@ -147,7 +142,7 @@
   repo_link: https://github.com/wstevo4891/atbaldwin
   summary: E-commerce website for a small business built in Ruby on Rails
                with the Spree engine.
-  content:
+  description:
     - Ruby on Rails e-commerce website for a home furnishings and gift store in
       Columbus, GA. The client wanted a site to promote the store, show its
       location, and offer its products for sale online. With the Spree
@@ -183,7 +178,7 @@
   repo_link: https://github.com/wstevo4891/suggestion_box_mean
   summary: MEAN Stack app for co-workers to make anonymous
            suggestions for improving their work space, meetings, etc.
-  content:
+  description:
     - Suggestion Box is a tool for co-workers to make anonymous suggestions for
       improving their work space, meetings, etc. After building this simple app
       for an AngularJS course final project, I went a step further and put it on
