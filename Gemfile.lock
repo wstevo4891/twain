@@ -171,6 +171,7 @@ GEM
       ast (~> 2.4.0)
     pg (1.1.4)
     popper_js (1.14.5)
+    power_assert (1.1.4)
     public_suffix (3.0.3)
     puma (3.12.1)
     rack (2.0.7)
@@ -263,6 +264,8 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    test-unit (3.3.3)
+      power_assert
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.9)
@@ -321,6 +324,7 @@ DEPENDENCIES
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
+  test-unit
   tzinfo-data
   web-console (>= 3.3.0)
   webdrivers
