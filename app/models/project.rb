@@ -21,6 +21,10 @@ class Project < ApplicationRecord
 
   mount_uploaders :images, ImageUploader
 
+  mount_uploader :desktop, ImageUploader
+
+  mount_uploaders :mobile, ImageUploader
+
   # == Relationships ========================================================
 
   has_rich_text :content

@@ -80,6 +80,8 @@ projects.each do |project|
     slug: project['slug'],
     cover: seed_asset_image(project['cover']),
     images: seed_image_array(project['images']),
+    desktop: seed_asset_image(project['desktop']),
+    mobile: seed_image_array(project['mobile']),
     meta_title: project['meta_title'],
     meta_description: project['meta_description'],
     summary: project['summary'],

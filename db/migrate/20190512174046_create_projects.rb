@@ -5,6 +5,8 @@ class CreateProjects < ActiveRecord::Migration[6.0]
       t.string   :slug
       t.string   :cover
       t.string   :images, array: true, default: []
+      t.string   :desktop
+      t.string   :mobile, array: true, default: []
       t.string   :meta_title
       t.string   :meta_description
       t.text     :summary

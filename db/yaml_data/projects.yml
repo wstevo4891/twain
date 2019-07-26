@@ -1,13 +1,17 @@
 ---
 - title: RAM Mounts
   slug: ram-mounts
-  cover: rammounts-cover.jpg
+  cover: rammounts-cover.png
   images:
-    - rammounts-cover.jpg
-    - rammounts-home-tiles.jpg
-    - rammounts-home-footer.jpg
-    - rammounts-motorcycle-wizard-initial.jpg
-    - rammounts-motorcycle-wizard-complete.jpg
+    - rammounts-cover.png
+    - rammounts-mount-builder.png
+    - rammounts-xgrip.png
+    - rammounts-motorcycle-page.png
+    - rammounts-shop-all.png
+  desktop: rammounts-home-page.png
+  mobile:
+    - rammounts-mobile.png
+    - rammounts-mobile-menu.png
   meta_title: RAM Mounts | Full Stack Rails Developer | Eric Stephenson
   meta_description: E-Commerce Ruby on Rails application for RAM Mounts.
   summary:  E-Commerce website for RAM Mounts, a manufacturer of durable
@@ -48,13 +52,17 @@
 
 - title: Bolt Network
   slug: bolt-network
-  cover: bolt-network-cover.jpg
+  cover: bolt-network-cover.png
   images:
-    - bolt-network-cover.jpg
-    - bolt-network-search-bar.jpg
-    - bolt-network-hover-1.jpg
-    - bolt-network-hover-2.jpg
-    - bolt-network-the-hangover.jpg
+    - bolt-network-cover.png
+    - bolt-network-carousels.png
+    - bolt-network-hover.png
+    - bolt-network-search.png
+    - bolt-network-sci-fi.png
+  desktop: bolt-network-home-page.png
+  mobile:
+    - bolt-network-mobile.png
+    - bolt-network-mobile-menu.png
   meta_title: Bolt Network | Full Stack Rails Developer | Eric Stephenson
   meta_description: Reverse engineer Netflix UI and features in a Ruby on Rails
                     application using ReactJS, PostgreSQL, and Amazon S3.
@@ -96,17 +104,21 @@
     - griffen-financial-merchant-application.jpg
     - griffen-financial-products-page.jpg
     - griffen-financial-product.jpg
+  desktop: griffen-home-page.png
+  mobile:
+    - griffen-mobile-full.png
+    - griffen-mobile-menu.png
   meta_title: Griffen Financial | Full Stack Rails Developer | Eric Stephenson
   meta_description: Ruby on Rails application showcasing integration with
-                    Dropbox and Zoho API's, PDF form uploads to Dropbox using
+                    Dropbox and Zoho APIs, PDF form uploads to Dropbox using
                     Wicked PDF, and dynamic nested forms with Cocoon.
-  summary: Ruby on Rails website using CarrierWave, Cocoon, Wicked_PDF,
-           Dropbox-SDK, and Ruby-Zoho for processing application forms.
+  summary:  Ruby on Rails web application for processing application forms.
+            Integrated with Dropbox, MailChimp, and Zoho APIs.
   site_link: https://dry-tor-4505.herokuapp.com/
   repo_link: https://github.com/wstevo4891/griffen
   description:
     - Griffen Financial is a startup that aims to provide specialized
-      credit/debit card readers for legal marijuana merchants. The client wanted
+      credit/debit card readers for legal cannabis merchants. The client wanted
       a site to advertise the devices and provide online application forms for
       buyers. Another request was that the site be integrated with Dropbox, Zoho
       CMS, and Mandrill.
@@ -121,13 +133,15 @@
       and host a demo on Heroku.
   features:
     - Integration with Dropbox, Zoho CMS, and MailChimp APIs
-    - Bootstrap forms with add-and-remove nested models
+    - Bootstrap forms with add-and-remove nested fields
+    - Image uploads with Carrierwave
+    - PDF generation of completed forms
   apis:
     - Dropbox
-    - Zoho CMS
     - MailChimp
+    - Zoho CMS
   tech_stack:
-    - Ruby on Rails
+    - Ruby on Rails 4
     - PostgreSQL
     - jQuery
     - HTML5
@@ -144,6 +158,10 @@
     - baldwin-interiors-interiors.jpg
     - baldwin-interiors-footer.jpg
     - baldwin-interiors-glassware.jpg
+  desktop: baldwin-home-page.png
+  mobile:
+    - baldwin-mobile.png
+    - baldwin-mobile-menu.png
   meta_title: At Home with Baldwin Interiors | Full Stack Rails Developer | Eric Stephenson
   meta_description: Ruby on Rails e-commerce application for a small business
                     built with the Spree engine.
@@ -183,6 +201,10 @@
     - suggestion-box-form.jpg
     - suggestion-box-comments.jpg
     - suggestion-box-laffy-taffy.jpg
+  desktop: suggestion-box-full-page.png
+  mobile:
+    - suggestion-box-mobile.png
+    - suggestion-box-mobile-comments.png
   meta_title: Suggestion Box | Full Stack Ruby and JavaScript Developer | Eric Stephenson
   meta_description: Simple MEAN Stack application for creating and upvoting
                     suggestions for the workplace.
