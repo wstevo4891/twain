@@ -1,5 +1,0 @@
-
-# Strategy Pattern
-
-
-
