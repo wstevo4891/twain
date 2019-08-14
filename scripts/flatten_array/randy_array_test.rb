@@ -1,11 +1,12 @@
 # test\services\randy_array_test.rb
 
-require 'test_helper'
-require "#{Rails.root}/lib/services/randy_array"
+require 'test/unit'
+require_relative 'randy_array'
 
 puts 'RandyArrayTest ==============================='
 
-class RandyArrayTest < ActiveSupport::TestCase
+# Test for RandyArray service: a random nested array generator
+class RandyArrayTest < Test::Unit::TestCase
   def setup
     @randy = RandyArray.build
   end
@@ -14,14 +15,14 @@ class RandyArrayTest < ActiveSupport::TestCase
     puts ''
   end
 
-  test 'can_build_array' do
+  def test_can_build_array
     puts __method__
     print @randy
     assert_kind_of Array, @randy
   end
 
-  test 'array_is_nested' do
+  def test_array_is_nested
     puts __method__
-    assert @randy.find { |item| item.is_a? Array }
+    assert_true(@randy.find { |item| item.is_a? Array })
   end
 end

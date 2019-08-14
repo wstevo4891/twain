@@ -1,10 +1,11 @@
-# test/services/array_flattener_test.rb
+# scripts/array_flattener_test.rb
 
-require 'test_helper'
-require "#{Rails.root}/lib/services/randy_array"
-require "#{Rails.root}/lib/services/array_flattener"
+require 'test/unit'
+require_relative 'randy_array'
+require_relative 'array_flattener'
 
-class ArrayFlattenerTest < ActiveSupport::TestCase
+# Test for ArrayFlattener service
+class ArrayFlattenerTest < Test::Unit::TestCase
   # Setup
   # =========================
   # Generate a random, arbitrarily nested array of integers
@@ -17,14 +18,14 @@ class ArrayFlattenerTest < ActiveSupport::TestCase
     puts ''
   end
 
-  test 'result is flat' do
+  def test_result_is_flat
     puts __method__
     result = ArrayFlattener.flatten(@arr)
 
-    refute result.find { |item| item.is_a? Array }
+    assert_false(result.find { |item| item.is_a? Array })
   end
 
-  test 'result has all numbers' do
+  def test_result_has_all_numbers
     puts __method__
     result = ArrayFlattener.flatten(@arr)
 

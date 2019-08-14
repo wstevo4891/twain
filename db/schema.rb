@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2019_06_09_211902) do
   end
 
   create_table "articles", force: :cascade do |t|
+    t.string "blog"
     t.string "slug"
     t.string "meta_title"
     t.string "meta_description"

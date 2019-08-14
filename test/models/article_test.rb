@@ -1,7 +1,17 @@
-# require 'test_helper'
+require 'test_helper'
 
-# class ArticleTest < ActiveSupport::TestCase
-#   test "the truth" do
-#     assert true
-#   end
-# end
+class ArticleTest < ActiveSupport::TestCase
+  def teardown
+    puts ''
+  end
+
+  test 'can find by blog' do
+    puts __method__
+    articles = Article.blog('The Rails 4 Blues')
+    puts articles.inspect
+
+    list = articles.select { |a| a.blog == 'The Rails 4 Blues' }
+
+    assert_equal list.length, articles.length
+  end
+end
