@@ -84,8 +84,8 @@ blogs.each do |blog|
   puts "Creating blog: #{blog['name']}"
 
   Blog.create!(
-    name: blog['title'],
-    slug: blog['title'].downcase.tr(' ', '-'),
+    name: blog['name'],
+    slug: blog['name'].downcase.tr(' ', '-'),
     cover: seed_asset_image(blog['cover']),
     description: blog['description']
   )

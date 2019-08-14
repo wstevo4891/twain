@@ -3,16 +3,20 @@
   blog: The Rails 4 Blues
   slug: auto-generate-the-pain
   meta_title: Auto-generate the Pain | The Rails 4 Blues
-  meta_description: A whole host of reasons why auto-generated ID's in Rails 4 was a mistake and why Rails 5 fixed it.
-  summary: A whole host of reasons why auto-generated ID's in Rails 4 was a mistake and why Rails 5 fixed it.
+  meta_description:
+    A whole host of reasons why auto-generated ID's in Rails 4 was a mistake and why Rails 5 fixed it.
+  summary:
+    A whole host of reasons why auto-generated ID's in Rails 4 was a mistake and why Rails 5 fixed it.
   cover: auto-generate-the-pain-cover.jpg
 
 - title: Associable
   blog: The Rails 4 Blues
   slug: associable
   meta_title: Associable | The Rails 4 Blues
-  meta_description: A nifty concern module with meta-programming for those still dealing with the Rails 4 Blues
-  summary: A nifty concern module with meta-programming for those still dealing with the Rails 4 Blues
+  meta_description:
+    A nifty concern module with meta-programming for those still dealing with the Rails 4 Blues
+  summary:
+    A nifty concern module with meta-programming for those still dealing with the Rails 4 Blues
   cover: willy-wonka-associable
 
 - title: React on Rails
