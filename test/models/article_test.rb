@@ -8,7 +8,7 @@ class ArticleTest < ActiveSupport::TestCase
   test 'can find by blog' do
     puts __method__
     articles = Article.blog('The Rails 4 Blues')
-    puts articles.inspect
+    puts articles.pluck(:blog)
 
     list = articles.select { |a| a.blog == 'The Rails 4 Blues' }
 

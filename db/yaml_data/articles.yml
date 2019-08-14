@@ -1,52 +1,32 @@
-# test\fixtures\articles.yml
-
-# Attributes
-# =====================================
-# t.string   :blog
-# t.string   :slug
-# t.string   :meta_title
-# t.string   :meta_description
-# t.string   :title
-# t.text     :summary
-# t.date     :date
-# t.string   :cover
-
-one:
+---
+- title: Auto-generate the Pain
   blog: The Rails 4 Blues
-  slug: autogenerate-the-pain
-  meta_title: Autogenerate the Pain | The Rails 4 Blues
+  slug: auto-generate-the-pain
+  meta_title: Auto-generate the Pain | The Rails 4 Blues
   meta_description: A whole host of reasons why auto-generated ID's in Rails 4 was a mistake and why Rails 5 fixed it.
-  title: Autogenerate the Pain
   summary: A whole host of reasons why auto-generated ID's in Rails 4 was a mistake and why Rails 5 fixed it.
-  date: August 13, 2019
-  cover: images/foo.jpg
+  cover: auto-generate-the-pain-cover.jpg
 
-two:
+- title: Associable
   blog: The Rails 4 Blues
   slug: associable
   meta_title: Associable | The Rails 4 Blues
   meta_description: A nifty concern module with meta-programming for those still dealing with the Rails 4 Blues
-  title: Associable
   summary: A nifty concern module with meta-programming for those still dealing with the Rails 4 Blues
-  date: August 13, 2019
-  cover: images/foo.jpg
+  cover: willy-wonka-associable
 
-three:
-  blog: Rails Labs
+- title: React on Rails
+  blog: Code Labs
   slug: react-on-rails
-  meta_title: React on Rails | Rails Labs
+  meta_title: React on Rails | Code Labs
   meta_description: An introduction to working with React.js in a Rails 5 app
-  title: React on Rails
   summary: An introduction to working with React.js in a Rails 5 app
-  date: August 13, 2019
-  cover: images/foo.jpg
+  cover: react-on-rails-cover.png
 
-four:
+- title: Building a Blog with Action Text
   blog: Rails 6 by the Horns
   slug: building-a-blog-with-action-text
-  meta_title: Building a Blog with Action Text  | Rails 5 Joy
+  meta_title: Building a Blog with Action Text  | Rails 6 by the Horns
   meta_description: An introduction to building a blog with ActionText in Rails 6
-  title: Building a Blog with Action Text
   summary: An introduction to building a blog with ActionText in Rails 6
-  date: August 13, 2019
-  cover: images/foo.jpg
+  cover: action-text-cover.jpg

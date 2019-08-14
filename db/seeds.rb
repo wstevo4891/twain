@@ -15,7 +15,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 def seed_asset_image(img)
-  File.open(Rails.root + "app/assets/images/#{img}")
+  File.open(Rails.root.join("app/assets/images/#{img}"))
 end
 
 def seed_image_array(arr)
@@ -38,37 +38,12 @@ def load_yaml(file)
   YAML.load_file(Rails.root.join("db/yaml_data/#{file}.yml"))
 end
 
-# posts = load_yaml('posts')
-
-# Post.delete_all
-
-# puts 'Loading posts ============================'
-
-# posts.each do |post|
-#   puts "Loading post: #{post['title']}"
-
-#   new_post = Post.create!(
-#     meta_title: post['meta_title'],
-#     meta_description: post['meta_description'],
-#     title: post['title'],
-#     slug: post['slug'],
-#     date: create_date(post['date']),
-#     cover: seed_asset_image(post['cover']),
-#     description: post['description']
-#   )
-
-#   post['sections'].each do |section|
-#     new_post.sections.create!(
-#       header: section['header'],
-#       image: section['image'],
-#       body: section['body']
-#     )
-#   end
-# end
+# PROJECTS
+# =========================================================
 
 Project.delete_all
 
-puts 'Loading projects ========================='
+puts 'Loading projects...'
 
 projects = load_yaml('projects')
 
@@ -93,3 +68,50 @@ projects.each do |project|
     tech_stack: project['tech_stack']
   )
 end
+
+puts 'Projects created!'
+
+# BLOGS
+# =========================================================
+
+Blog.delete_all
+
+puts 'Loading blogs...'
+
+blogs = load_yaml('blogs')
+
+blogs.each do |blog|
+  puts "Creating blog: #{blog['name']}"
+
+  Blog.create!(
+    name: blog['title'],
+    slug: blog['title'].downcase.tr(' ', '-'),
+    cover: seed_asset_image(blog['cover']),
+    description: blog['description']
+  )
+end
+
+puts 'Blogs loaded!'
+
+# ARTICLES
+# =========================================================
+
+Article.delete_all
+
+puts 'Loading articles...'
+
+articles = load_yaml('articles')
+
+articles.each do |article|
+  Article.create!(
+    title: article['title'],
+    blog_id: Blog.find_by(name: article['blog']).id,
+    slug: article['slug'],
+    meta_title: article['meta_title'],
+    meta_description: article['meta_description'],
+    summary: article['summary'],
+    cover: article['cover']
+  )
+end
+
+puts 'Articles loaded!'

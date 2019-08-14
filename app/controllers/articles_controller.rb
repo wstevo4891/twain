@@ -1,4 +1,5 @@
-##
+# frozen_string_literal: true
+
 # @file app/controllers/articles_controller.rb
 #
 # @class ArticlesController
@@ -62,6 +63,7 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1.json
   def destroy
     @article.destroy
+
     respond_to do |format|
       format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
       format.json { head :no_content }
@@ -69,6 +71,7 @@ class ArticlesController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_article
       @article = Article.find(params[:id])
@@ -76,6 +79,9 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit Article.attributes
+      params.require(:article).permit(
+        :blog, :slug, :meta_title, :meta_description, :title,
+        :summary, :date, :cover, :content
+      )
     end
 end

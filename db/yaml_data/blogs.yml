@@ -1,0 +1,17 @@
+---
+- name: The Rails 4 Blues
+  cover: engineers-pulling-train.jpg
+  description: A dismal collection of woes and grievances that all who are stuck working on a Rails 4 application will know and hate. Also, some useful methods for clawing your way around the suck and beating it to death with a stick.
+
+- name: Rails 6 by the Horns
+  cover: sabin-vs-train-woodcut.jpg
+  description: Take Rails 6 by the horns with this series on the latest features in Rails and what you can build with them. Rails 4 blues not included.
+
+- name: Code Labs
+  cover: t-rex-drums-splosion.png
+  description: Hold on to your hats and come with me as we explore how to build some cool s&%t with Ruby and JavaScript.
+
+- name: Bolt Network
+  cover: bolt-network-blog-cover.png
+  description: Want to build a Netflix clone? I'll show you the way with
+  React.js, Sinatra, and Elasticsearch.
