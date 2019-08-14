@@ -35,3 +35,6 @@ portfolio-plan.txt
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+# Ignore development image uploads
+/public/uploads

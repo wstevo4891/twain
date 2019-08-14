@@ -67,7 +67,7 @@
   meta_description: Reverse engineer Netflix UI and features in a Ruby on Rails
                     application using ReactJS, PostgreSQL, and Amazon S3.
   summary: A Ruby on Rails side project where I attempt to reverse engineer
-           the UI of Netflix.
+           the UI and features of Netflix.
   site_link: https://lit-anchorage-35230.herokuapp.com/
   repo_link: https://github.com/wstevo4891/bolt-network-react
   description:

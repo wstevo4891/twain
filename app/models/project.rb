@@ -16,6 +16,21 @@ class Project < ApplicationRecord
   ].freeze
 
   # == Attributes ===========================================================
+  # t.string   :title
+  # t.string   :slug
+  # t.string   :cover
+  # t.string   :images, array: true, default: []
+  # t.string   :desktop
+  # t.string   :mobile, array: true, default: []
+  # t.string   :meta_title
+  # t.string   :meta_description
+  # t.text     :summary
+  # t.string   :site_link
+  # t.string   :repo_link
+  # t.text     :description, array: true, default: []
+  # t.string   :features, array: true, default: []
+  # t.string   :apis, array: true, default: []
+  # t.string   :tech_stack, array: true, default: []
 
   mount_uploader :cover, ImageUploader
 
@@ -41,6 +56,10 @@ class Project < ApplicationRecord
 
   def self.attributes
     attribute_names.map(&:to_sym)
+  end
+
+  def pretty_print
+    JSON.pretty_generate(attributes)
   end
 
   # == Instance Methods =====================================================

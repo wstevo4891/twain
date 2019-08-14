@@ -72,6 +72,8 @@ ActiveRecord::Schema.define(version: 2019_06_09_211902) do
     t.string "slug"
     t.string "cover"
     t.string "images", default: [], array: true
+    t.string "desktop"
+    t.string "mobile", default: [], array: true
     t.string "meta_title"
     t.string "meta_description"
     t.text "summary"

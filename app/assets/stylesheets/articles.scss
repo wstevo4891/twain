@@ -1,3 +1,10 @@
 // Place all the styles related to the Articles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// Set min-height of trix editor text-area
+// on articles form
+// 
+.trix-content {
+  min-height: 50em;
+}

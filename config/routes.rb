@@ -16,10 +16,12 @@ Rails.application.routes.draw do
   # API Routes
   # ===========================================================================
   namespace :api, defaults: { format: :json } do
-    # Projects index
-    get '/projects', to: 'projects#index'
+    namespace :v1 do
+      # Projects index
+      get '/projects', to: 'projects#index'
 
-    # Projects show
-    get '/projects/:slug', to: 'projects#show'
+      # Projects show
+      get '/projects/:slug', to: 'projects#show'
+    end
   end
 end
