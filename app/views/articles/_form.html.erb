@@ -12,8 +12,18 @@
   <% end %>
 
   <div class="form-group">
-    <%= form.label :blog %>
-    <%= form.text_field :blog, class: 'form-control' %>
+    <%= form.label :blog_id, 'Blog' %>
+    <%#= form.select(
+      :blog_id,
+      Blog.all.collect { |b| [b.name, b.id] },
+      { include_blank: true }
+    ) %>
+    <%= form.collection_select(
+      :blog_id,
+      Blog.all, :id, :name,
+      { prompt: 'Select Blog' },
+      { class: 'form-control' }
+    ) %>
   </div>
 
   <div class="form-group">

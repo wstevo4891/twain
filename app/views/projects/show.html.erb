@@ -5,8 +5,12 @@
 <div class="container pb-5">
   <div class="row justify-content-start">
     <div class="col-4 mt-4 mb-4">
-      <%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-sm btn-outline-success' %> |
-      <%= link_to 'Back to List', projects_path, class: 'btn btn-secondary' %>
+      <%= link_to 'Back', projects_path, class: 'btn btn-secondary' %> |
+      <%= link_to(
+        'Edit',
+        edit_project_path(@project),
+        class: 'btn btn-outline-success'
+      ) %>
     </div>
   </div>
 
