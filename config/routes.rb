@@ -23,6 +23,11 @@ Rails.application.routes.draw do
 
       # Projects show
       get '/projects/:slug', to: 'projects#show'
+
+      # Blogs index
+      get '/blogs', to: 'blogs#index'
+
+      get '/blogs/:slug', to: 'blogs#show'
     end
   end
 end
