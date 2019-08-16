@@ -20,7 +20,8 @@ class Article < ApplicationRecord
 
   # == Validations ==========================================================
 
-  # validates :title, :cover, :date, :description, presence: true
+  validates :blog_id, :title, :summary, :cover, :slug, :meta_title,
+            :meta_description, presence: true
 
   # == Scopes ===============================================================
 

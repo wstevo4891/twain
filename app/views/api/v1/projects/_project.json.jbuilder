@@ -10,3 +10,7 @@ json.url "/projects/#{project.slug}"
 json.cover project.cover.url
 
 json.images project.images.map(&:url)
+
+json.desktop project.desktop.url
+
+json.mobile project.mobile.map(&:url)
