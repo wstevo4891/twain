@@ -3,16 +3,12 @@
 <p id="notice"><%= notice %></p>
 
 <div class="container pb-5">
-  <div class="row justify-content-start">
-    <div class="col-4 mt-4 mb-4">
-      <%= link_to 'Back', projects_path, class: 'btn btn-secondary' %> |
-      <%= link_to(
-        'Edit',
-        edit_project_path(@project),
-        class: 'btn btn-outline-success'
-      ) %>
-    </div>
-  </div>
+  <%= render(
+    'resource_nav',
+    resource: @project,
+    index_path: projects_path,
+    edit_path: edit_project_path(@project)
+  ) %>
 
   <div class="row justify-content-center mt-4 mb-4">
     <h1><%= @project.title %></h1>

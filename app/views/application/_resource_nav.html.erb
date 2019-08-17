@@ -1,0 +1,24 @@
+<%#
+  Nav Buttons for a single resource
+
+  Local Variables:
+    resource [Object] the singular resource instance
+
+    index_path [String] url for resource's index path
+
+    edit_path [String] url for resource's edit path
+%>
+
+<div class="row justify-content-start">
+  <div class="col-12 mt-4 mb-4">
+    <%= link_to 'Index', index_path, class: 'btn btn-outline-secondary' %> |
+
+    <%= link_to 'Show', resource, class: 'btn btn-outline-info' %> |
+
+    <%= link_to(
+      'Edit',
+      edit_path,
+      class: 'btn btn-outline-success'
+    ) %>
+  </div>
+</div>

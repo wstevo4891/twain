@@ -1,6 +1,13 @@
 <%# app/views/projects/new.html.erb %>
 
 <div class="container pb-5 mb-5">
+  <%= render(
+    'resource_nav',
+    resource: @project,
+    index_path: projects_path,
+    edit_path: edit_project_path(@project)
+  ) %>
+
   <h1 class="text-center mt-4 mb-4">Edit <%= @project.title %></h1>
 
   <div class="row justify-content-center">

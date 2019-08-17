@@ -1,15 +1,5 @@
 <%= form_with(model: project, local: true) do |form| %>
-  <% if project.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
-
-      <ul>
-        <% project.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'resource_errors', resource: project %>
 
   <div class="form-group">
     <%= form.label :title %>
@@ -58,15 +48,16 @@
 
   <div class="form-group">
     <%= form.label :tech_stack, 'Tech Stack' %>
-    <%= form.select :tech_stack,
-                    Project::TECH_OPTIONS,
-                    { prompt: 'Select Options' },
-                    {
-                      class: 'form-control',
-                      multiple: true,
-                      size: 8
-                    }
-    %>
+    <%= form.select(
+      :tech_stack,
+      Project::TECH_OPTIONS,
+      { prompt: 'Select Options' },
+      {
+        class: 'form-control',
+        multiple: true,
+        size: 8
+      }
+    ) %>
   </div>
 
   <div class="form-group">

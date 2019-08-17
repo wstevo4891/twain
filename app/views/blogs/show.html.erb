@@ -1,16 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <div class="container pb-5">
-  <div class="row justify-content-start">
-    <div class="col-4 mt-4 mb-4">
-      <%= link_to 'Back', blogs_path, class: 'btn btn-secondary' %> |
-      <%= link_to(
-        'Edit',
-        edit_blog_path(@blog),
-        class: 'btn btn-outline-success'
-      ) %>
-    </div>
-  </div>
+  <%= render(
+    'resource_nav',
+    resource: @blog,
+    index_path: blogs_path,
+    edit_path: edit_blog_path(@blog)
+  ) %>
 
   <div class="row justify-content-center mt-4 mb-4">
     <h1><%= @blog.name %></h1>
@@ -40,4 +36,3 @@
     </tbody>
   </table>
 </div>
-

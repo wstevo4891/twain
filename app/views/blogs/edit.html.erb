@@ -1,6 +1,18 @@
-<h1>Editing Blog</h1>
+<%# app\views\blogs\edit.html.erb %>
 
-<%= render 'form', blog: @blog %>
+<div class="container pb-5 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10 pb-5 mb-5">
+      <%= render(
+        'resource_nav',
+        resource: @blog,
+        index_path: blogs_path,
+        edit_path: edit_blog_path(@blog)
+      ) %>
 
-<%= link_to 'Show', @blog %> |
-<%= link_to 'Back', blogs_path %>
+      <h1 class="text-center mt-4 mb-4">Editing <%= @blog.name %></h1>
+
+      <%= render 'form', blog: @blog %>
+    </div>
+  </div>
+</div>

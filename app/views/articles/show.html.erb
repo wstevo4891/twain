@@ -1,4 +1,42 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+<div class="container pb-5">
+  <%= render(
+    'resource_nav',
+    resource: @article,
+    index_path: articles_path,
+    edit_path: edit_article_path(@article)
+  ) %>
+
+  <div class="row justify-content-center mt-4 mb-4">
+    <h1><%= @article.title %></h1>    
+  </div>
+
+  <div class="row justify-content-center mt-4 mb-4">    
+    <h2>Blog: <%= @article.blog.name %></h2>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">
+          <strong>FIELD</strong>
+        </th>
+        <th scope="col">
+          <strong>VALUE</strong>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+    <% @article.attributes.each do |key, value| %>
+      <tr>
+        <td><%= key.upcase %></td>
+        <td><%= value %></td>
+      </tr>
+    <% end %>
+
+    </tbody>
+  </table>
+</div>

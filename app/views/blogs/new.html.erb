@@ -1,5 +1,11 @@
-<h1>New Blog</h1>
+<%# app\views\blogs\new.html.erb %>
 
-<%= render 'form', blog: @blog %>
+<div class="container pb-5 mb-5">
+  <h1 class="text-center mt-4 mb-4">New Blog</h1>
 
-<%= link_to 'Back', blogs_path %>
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10 pb-5 mb-5">
+      <%= render 'form', blog: @blog %>
+    </div>
+  </div>
+</div>
