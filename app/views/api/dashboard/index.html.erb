@@ -1,0 +1,11 @@
+<%# app\views\api\dashboard\index.html.erb %>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 mt-4 mb-4">
+      <h1 class="text-center">API Dashboard</h1>
+
+      <%= render 'routes', routes: @dashboard.routes %>
+    </div>
+  </div>
+</div>

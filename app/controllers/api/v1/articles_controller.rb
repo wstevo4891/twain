@@ -7,6 +7,13 @@ module Api
     # API Controller for articles
     class ArticlesController < ApplicationController
       ##
+      # GET /api/v1/articles
+      #
+      def index
+        @articles = Article.all
+      end
+
+      ##
       # GET /api/v1/articles/:slug
       #
       def show

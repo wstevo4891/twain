@@ -1,0 +1,51 @@
+<%# app\views\api\dashboard\_routes.html.erb %>
+
+<div class="row">
+  <% routes.each do |route| %>
+    <div class="col-lg-6 mt-4 mb-4">
+      <% if route[:action] == 'index' %>
+
+        <h2 class="mb-4"><%= route[:model] %>s</h2>
+
+        <a href="/api/data/<%= route[:model] %>" class="btn btn-primary">
+          View Index
+        </a>
+
+      <% else %>
+
+        <form action="/api/data" method="post">
+          <input
+            type="hidden"
+            name="model"
+            value="<%= route[:model] %>"
+          >
+
+          <div class="form-group">
+            <%= label_tag :slug, "Show #{route[:model]}" %>
+
+            <%= select_tag(
+              :slug,
+              options_for_select(route[:options]),
+              {
+                prompt: "Select #{route[:model]}",
+                class: 'form-control'
+              }
+            ) %>
+          </div>
+
+          <div class="actions">
+            <input
+              type="submit"
+              name="commit"
+              value="Submit"
+              class="btn btn-primary"
+            >
+          </div>
+        </form>
+
+      <% end %>
+    </div>
+
+  <% end %>
+
+</div>

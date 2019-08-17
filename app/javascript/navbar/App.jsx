@@ -52,6 +52,10 @@ export default class App extends React.Component {
             <NavItem>
               <NavLink href="/skills">Skills</NavLink>
             </NavItem>
+
+            <NavItem>
+              <NavLink href="/api/dashboard">API</NavLink>
+            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>

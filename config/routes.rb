@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ##
 # @file config/routes.rb
 #
@@ -9,28 +11,39 @@ Rails.application.routes.draw do
   # ===========================================================================
   # ActiveRecord Resources
   # ===========================================================================
-  resources :articles
-  resources :blogs
-  resources :projects
+  resources :articles, :blogs, :projects
 
   # ===========================================================================
-  # API Routes
+  # API
   # ===========================================================================
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
+      # Articles index
+      get '/articles', to: 'articles#index'
+
       # Articles show
-      get '/article/:slug', to: 'articles#show'
+      get '/articles/:slug', to: 'articles#show', as: :article
 
       # Blogs index
       get '/blogs', to: 'blogs#index'
 
-      get '/blogs/:slug', to: 'blogs#show'
+      # Blogs show
+      get '/blogs/:slug', to: 'blogs#show', as: :blog
 
       # Projects index
       get '/projects', to: 'projects#index'
 
       # Projects show
-      get '/projects/:slug', to: 'projects#show'
+      get '/projects/:slug', to: 'projects#show', as: :project
     end
   end
+
+  # ===========================================================================
+  # Dashboards
+  # ===========================================================================
+  get '/api/dashboard', to: 'api/dashboard#index'
+
+  get '/api/data/:model', to: 'api/data#index'
+
+  post '/api/data', to: 'api/data#show'
 end
