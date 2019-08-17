@@ -1,7 +1,11 @@
 # app\views\api\v1\blogs\index.json.jbuilder
 
-json.extract! @blog, :name, :slug, :description
+json.array! @blogs do |blog|
+  json.extract! blog, :name, :slug, :description
 
-json.url "/blogs/#{@blog.slug}"
+  json.type blog.class
 
-json.cover @blog.cover.url
+  json.cover blog.cover.url
+
+  json.url "/blogs/#{blog.slug}"
+end
