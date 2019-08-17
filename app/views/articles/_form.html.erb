@@ -6,7 +6,7 @@
 
     <%= form.collection_select(
       :blog_id,
-      Blog.all, :id, :name,
+      Blog.all, :id, :title,
       { prompt: 'Select Blog' },
       { class: 'form-control' }
     ) %>

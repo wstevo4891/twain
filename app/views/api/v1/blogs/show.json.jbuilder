@@ -1,6 +1,6 @@
 # app\views\api\v1\blogs\show.json.jbuilder
 
-json.extract! @blog, :name, :description
+json.extract! @blog, :title, :description
 
 json.type @blog.class
 

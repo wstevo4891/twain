@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 2019_08_14_044243) do
   end
 
   create_table "blogs", force: :cascade do |t|
-    t.string "name"
+    t.string "title"
     t.string "slug"
     t.string "cover"
     t.string "description"

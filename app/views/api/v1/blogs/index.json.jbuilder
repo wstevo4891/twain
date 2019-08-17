@@ -1,7 +1,7 @@
 # app\views\api\v1\blogs\index.json.jbuilder
 
 json.array! @blogs do |blog|
-  json.extract! blog, :name, :slug, :description
+  json.extract! blog, :title, :slug, :description
 
   json.type blog.class
 

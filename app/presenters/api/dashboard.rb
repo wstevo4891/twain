@@ -30,7 +30,7 @@ module Api
     end
 
     def model_slugs(route)
-      route[:model].constantize.pluck(:slug)
+      route[:model].constantize.pluck(:title, :slug)
     end
   end
 end

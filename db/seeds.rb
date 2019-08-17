@@ -81,11 +81,11 @@ puts 'Loading blogs...'
 blogs = load_yaml('blogs')
 
 blogs.each do |blog|
-  puts "Creating blog: #{blog['name']}"
+  puts "Creating blog: #{blog['title']}"
 
   Blog.create!(
-    name: blog['name'],
-    slug: blog['name'].downcase.tr(' ', '-'),
+    title: blog['title'],
+    slug: blog['title'].downcase.tr(' ', '-'),
     cover: seed_asset_image(blog['cover']),
     description: blog['description']
   )
@@ -105,12 +105,12 @@ articles = load_yaml('articles')
 articles.each do |article|
   Article.create!(
     title: article['title'],
-    blog_id: Blog.find_by(name: article['blog']).id,
+    blog_id: Blog.find_by(title: article['blog']).id,
     slug: article['slug'],
     meta_title: article['meta_title'],
     meta_description: article['meta_description'],
     summary: article['summary'],
-    cover: article['cover']
+    cover: seed_asset_image(article['cover'])
   )
 end
 

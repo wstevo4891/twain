@@ -17,7 +17,17 @@
     A nifty concern module with meta-programming for those still dealing with the Rails 4 Blues
   summary:
     A nifty concern module with meta-programming for those still dealing with the Rails 4 Blues
-  cover: willy-wonka-associable
+  cover: willy-wonka-associable.jpg
+
+- title: When Capybara Capywon't
+  blog: The Rails 4 Blues
+  slug: when-capybara-capywont
+  meta_title: When Capybara Capywon't | The Rails 4 Blues
+  meta_description:
+    Capybara is a great tool for testing user interactions with a web page, if you can find anything and actually execute scripts, that is.
+  summary:
+    Capybara is a great tool for testing user interactions with a web page, if you can find anything and actually execute scripts, that is.  This is a story of my attempt to make a simple test for a search bar in a Rails 4 compatible version of Capybara.
+  cover: capybara-capywont.jpeg
 
 - title: React on Rails
   blog: Code Labs
