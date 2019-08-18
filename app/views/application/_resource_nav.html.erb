@@ -19,6 +19,12 @@
       'Edit',
       edit_path,
       class: 'btn btn-outline-success'
+    ) %> |
+
+    <%= link_to(
+      'JSON',
+      "/api/v1/#{resource.class.name.downcase}s/#{resource.slug}",
+      class: 'btn btn-outline-warning'
     ) %>
   </div>
 </div>

@@ -3,7 +3,7 @@
 json.array! @blogs do |blog|
   json.extract! blog, :title, :slug, :description
 
-  json.type blog.class
+  json.type 'blog'
 
   json.cover blog.cover.url
 

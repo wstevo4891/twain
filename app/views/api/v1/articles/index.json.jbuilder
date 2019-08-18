@@ -5,7 +5,7 @@ json.array! @articles do |article|
                 :title, :slug, :meta_title, :meta_description,
                 :summary, :date, :content
 
-  json.type article.class
+  json.type 'article'
 
   json.cover article.cover.url
 end

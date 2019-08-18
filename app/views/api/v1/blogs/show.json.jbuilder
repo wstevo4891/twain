@@ -2,7 +2,7 @@
 
 json.extract! @blog, :title, :description
 
-json.type @blog.class
+json.type 'blog'
 
 json.url "/blogs/#{@blog.slug}"
 

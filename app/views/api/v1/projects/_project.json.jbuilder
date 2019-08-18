@@ -5,6 +5,8 @@ json.extract! project,
               :site_link, :repo_link, :description, :features,
               :apis, :tech_stack
 
+json.type 'project'
+
 json.url "/projects/#{project.slug}"
 
 json.cover project.cover.url
