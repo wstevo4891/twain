@@ -1,15 +1,13 @@
-<%= "<%# app/views/#{plural_table_name}/edit.html.erb %>" %>
-
 <div class="container pb-5 mb-5">
-  <%= "<%= render(
+  <%%= render(
     'resource_nav',
-    resource: @#{singular_table_name},
-    index_path: #{plural_table_name}_path,
-    edit_path: edit_#{singular_table_name}_path(@#{singular_table_name})
-  ) %>" %>
+    resource: @<%= singular_table_name %>,
+    index_path: <%= plural_table_name %>_path,
+    edit_path: edit_<%= singular_table_name %>_path(@<%= singular_table_name %>)
+  ) %>
 
   <h1 class="text-center mt-4 mb-4">
-    Editing <%= singular_table_name.gsub('_', ' ').capitalize %>
+    Editing <%%= singular_table_name.title %>
   </h1>
 
   <div class="row justify-content-center">

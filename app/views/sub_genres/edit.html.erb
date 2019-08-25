@@ -1,0 +1,18 @@
+<div class="container pb-5 mb-5">
+  <%= render(
+    'resource_nav',
+    resource: @sub_genre,
+    index_path: sub_genres_path,
+    edit_path: edit_sub_genre_path(@sub_genre)
+  ) %>
+
+  <h1 class="text-center mt-4 mb-4">
+    Editing <%= singular_table_name.title %>
+  </h1>
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10">
+      <%= render 'form', sub_genre: @sub_genre %>
+    </div>
+  </div>
+</div>

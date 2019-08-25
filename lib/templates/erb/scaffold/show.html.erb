@@ -1,18 +1,12 @@
-<% if namespaced? -%>
-<%= "<%# app/views/#{plural_table_name.sub('_', '/')}/show.html.erb %>" %>
-<% else -%>
-<%= "<%# app/views/#{plural_table_name}/show.html.erb %>" %>
-<% end -%>
-
-<p id="notice"><%= notice %></p>
+<p id="notice"><%%= notice %></p>
 
 <div class="container pb-5">
-  <%= "<%= render(
+  <%%= render(
     'resource_nav',
-    resource: @#{singular_table_name},
-    index_path: #{plural_table_name}_path,
-    edit_path: edit_#{singular_table_name}_path(@#{singular_table_name})
-  ) %>" %>
+    resource: @<%= singular_table_name %>,
+    index_path: <%= plural_table_name %>_path,
+    edit_path: edit_<%= singular_table_name %>_path(@<%= singular_table_name %>)
+  ) %>
 
   <div class="row justify-content-center mt-4 mb-4">
     <h1><%%= @<%= singular_table_name %>.title %></h1>

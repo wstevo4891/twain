@@ -1,15 +1,15 @@
-<p id="notice"><%%= notice %></p>
+<p id="notice"><%= notice %></p>
 
 <div class="container">
   <h1 class="text-center mt-4 mb-4">
-    <%= plural_table_name.gsub('_', ' ').capitalize %>
+    Genres
   </h1>
 
-  <%= "<%= link_to(
-    'New #{singular_table_name.gsub('_', ' ').capitalize}',
-    new_#{singular_table_name}_path,
+  <%= link_to(
+    'New Genre',
+    new_genre_path,
     class: 'btn btn-outline-primary mt-4 mb-4'
-  ) %%>" %>
+  ) %>
 
   <table class="table">
     <thead>
@@ -20,37 +20,37 @@
     </thead>
 
     <tbody>
-      <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+      <% @genres.each do |genre| %>
         <tr>
-          <th scope="row"><%%= <%= singular_table_name %>.id %></th>
+          <th scope="row"><%= genre.id %></th>
 
           <td>
-            <%= "<%= link_to(
+            <%= link_to(
               'Show',
-              #{singular_table_name},
+              genre,
               class: 'btn btn-sm btn-outline-info'
-            ) %%>" %>
+            ) %>
           </td>
 
           <td>
-            <%= "<%= link_to(
+            <%= link_to(
               'Edit',
-              edit_#{singular_table_name}_path(#{singular_table_name}),
+              edit_genre_path(genre),
               class: 'btn btn-sm btn-outline-success'
-            ) %%>" %>
+            ) %>
           </td>
 
           <td>
-            <%= "<%= link_to(
+            <%= link_to(
               'Delete',
-              #{singular_table_name},
+              genre,
               method: :delete,
               data: { confirm: 'Are you sure?' },
               class: 'btn btn-sm btn-outline-danger'
-            ) %%>" %>
+            ) %>
           </td>
         </tr>
-      <%% end %>
+      <% end %>
     </tbody>
   </table>
 </div>

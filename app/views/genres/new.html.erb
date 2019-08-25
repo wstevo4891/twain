@@ -1,11 +1,11 @@
 <div class="container">
   <h1 class="text-center mt-4 mb-4">
-    New <%= singular_table_name.gsub('_', ' ').capitalize %>
+    New Genre
   </h1>
 
   <div class="row mt-4 justify-content-center">
     <div class="col-12 col-sm-10 pb-5 mb-5">
-      <%%= render 'form', <%= singular_table_name %>: @<%= singular_table_name %> %>
+      <%= render 'form', genre: @genre %>
     </div>
   </div>
 </div>

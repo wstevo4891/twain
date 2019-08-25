@@ -6,6 +6,9 @@
 # @description Application routes config
 #
 Rails.application.routes.draw do
+  resources :sub_genres
+  resources :genres
+  resources :movies
   root to: 'home#index'
 
   # ===========================================================================
