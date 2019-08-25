@@ -25,29 +25,29 @@
           <th scope="row"><%= article.title %></th>
 
           <td>
-            <%=
-              link_to 'Show',
-                      article,
-                      class: 'btn btn-sm btn-outline-info'
-            %>
+            <%= link_to(
+              'Show',
+              article,
+              class: 'btn btn-sm btn-outline-info'
+            ) %>
           </td>
           
           <td>
-            <%=
-              link_to 'Edit',
-                      edit_article_path(article),
-                      class: 'btn btn-sm btn-outline-success'
-            %>
+            <%= link_to(
+                'Edit',
+                edit_article_path(article),
+                class: 'btn btn-sm btn-outline-success'
+            ) %>
           </td>
           
           <td>
-            <%=
-              link_to 'Delete',
-                      article,
-                      method: :delete,
-                      data: { confirm: 'Are you sure?' },
-                      class: 'btn btn-sm btn-outline-danger'
-            %>
+            <%= link_to(
+              'Delete',
+              article,
+              method: :delete,
+              data: { confirm: 'Are you sure?' },
+              class: 'btn btn-sm btn-outline-danger'
+            ) %>
           </td>
         </tr>
       <% end %>

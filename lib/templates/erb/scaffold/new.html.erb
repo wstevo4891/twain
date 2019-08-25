@@ -1,11 +1,13 @@
-<%= "<!-- app/views/#{plural_table_name}/new.html.erb -->" %>
+<%= "<%# app/views/#{plural_table_name}/new.html.erb %>" %>
 
 <div class="container">
-  <h1 class="text-center mt-4"><%= singular_table_name.gsub('_', ' ').capitalize %></h1>
+  <h1 class="text-center mt-4 mb-4">
+    New <%= singular_table_name.gsub('_', ' ').capitalize %>
+  </h1>
 
   <div class="row mt-4 justify-content-center">
-    <div class="col-lg-10">
-      <%%= render 'form' %>
+    <div class="col-12 col-sm-10 pb-5 mb-5">
+      <%%= render 'form', <%= singular_table_name %>: @<%= singular_table_name %> %>
     </div>
   </div>
 </div>
