@@ -6,15 +6,12 @@
 # @description Application routes config
 #
 Rails.application.routes.draw do
-  resources :sub_genres
-  resources :genres
-  resources :movies
   root to: 'home#index'
 
   # ===========================================================================
   # ActiveRecord Resources
   # ===========================================================================
-  resources :articles, :blogs, :projects
+  resources :articles, :blogs, :projects, :movies, :genres, :sub_genres
 
   # ===========================================================================
   # API
@@ -38,6 +35,18 @@ Rails.application.routes.draw do
 
       # Projects show
       get '/projects/:slug', to: 'projects#show', as: :project
+
+      # Movies index
+      get '/movies', to: 'movies#index'
+
+      # Movies show
+      get '/movies/:slug', to: 'movies#show', as: :movie
+
+      # Genres index
+      get '/genres', to: 'genres#index'
+
+      # Genres show
+      get '/genres/:slug', to: 'genres#show', as: :genre
     end
   end
 

@@ -1,40 +1,40 @@
 ---
-  - name: Action
+  - title: Action
     plural: Actions
     category: Action Movies
 
-  - name: Adventure
+  - title: Adventure
     plural: Adventures
     category: Adventure Movies
 
-  - name: Comedy
+  - title: Comedy
     plural: Comedies
     category: Comedy Movies
 
-  - name: Drama
+  - title: Drama
     plural: Dramas
     category: Drama Movies
 
-  - name: Animation
+  - title: Animation
     plural: Animations
     category: Animation Movies
 
-  - name: Family
+  - title: Family
     plural: Families
     category: Family Movies
 
-  - name: Romance
+  - title: Romance
     plural: Romances
     category: Romance Movies
 
-  - name: Fantasy
+  - title: Fantasy
     plural: Fantasies
     category: Fantasy Movies
 
-  - name: Sci-Fi
+  - title: Sci-Fi
     plural: Sci-Fis
     category: Sci-Fi Movies
 
-  - name: Horror
+  - title: Horror
     plural: Horrors
     category: Horror Movies

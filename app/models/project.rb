@@ -46,7 +46,7 @@ class Project < ApplicationRecord
 
   # == Validations ==========================================================
 
-  # validates :title, :cover, :summary, presence: true
+  validates :title, :cover, :images, :desktop, :mobile, presence: true
 
   # == Scopes ===============================================================
 

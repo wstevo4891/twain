@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_14_044243) do
+ActiveRecord::Schema.define(version: 2019_08_25_185440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,39 @@ ActiveRecord::Schema.define(version: 2019_08_14_044243) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "genres", force: :cascade do |t|
+    t.string "title"
+    t.string "plural"
+    t.string "category"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "genres_movies", id: false, force: :cascade do |t|
+    t.bigint "genre_id"
+    t.bigint "movie_id"
+    t.index ["genre_id"], name: "index_genres_movies_on_genre_id"
+    t.index ["movie_id"], name: "index_genres_movies_on_movie_id"
+  end
+
+  create_table "movies", force: :cascade do |t|
+    t.string "title"
+    t.integer "year"
+    t.string "rated"
+    t.string "release_date"
+    t.string "run_time"
+    t.string "directors", default: [], array: true
+    t.string "writers", default: [], array: true
+    t.string "actors", default: [], array: true
+    t.string "plot"
+    t.string "photo"
+    t.string "logo"
+    t.string "poster"
+    t.json "ratings"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "title"
     t.string "slug"
@@ -96,6 +129,14 @@ ActiveRecord::Schema.define(version: 2019_08_14_044243) do
     t.string "tech_stack", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "sub_genres", force: :cascade do |t|
+    t.string "title"
+    t.bigint "genre_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["genre_id"], name: "index_sub_genres_on_genre_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
