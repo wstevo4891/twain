@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ##
 # @file app/models/article.rb
 #
