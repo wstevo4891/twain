@@ -1,0 +1,18 @@
+<div class="container pb-5 mb-5">
+  <%= render(
+    'resource_nav',
+    resource: @person,
+    index_path: people_path,
+    edit_path: edit_person_path(@person)
+  ) %>
+
+  <h1 class="text-center mt-4 mb-4">
+    Editing <%= singular_table_name.title %>
+  </h1>
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10">
+      <%= render 'form', person: @person %>
+    </div>
+  </div>
+</div>

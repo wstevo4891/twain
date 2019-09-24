@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container pb-5">
+  <%= render(
+    'resource_nav',
+    resource: @location,
+    index_path: locations_path,
+    edit_path: edit_location_path(@location)
+  ) %>
+
+  <div class="row justify-content-center mt-4 mb-4">
+    <h1><%= @location.title %></h1>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">
+          <strong>FIELD</strong>
+        </th>
+        <th scope="col">
+          <strong>VALUE</strong>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+    <% @location.attributes.each do |key, value| %>
+      <tr>
+        <td><%= key.upcase %></td>
+        <td><%= value %></td>
+      </tr>
+    <% end %>
+
+    </tbody>
+  </table>
+</div>

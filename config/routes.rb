@@ -6,6 +6,10 @@
 # @description Application routes config
 #
 Rails.application.routes.draw do
+  resources :regions
+  resources :roles
+  resources :locations
+  resources :people
   root to: 'home#index'
 
   # ===========================================================================
