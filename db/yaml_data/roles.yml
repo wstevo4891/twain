@@ -1,0 +1,6 @@
+---
+- name: Developer
+  billable: true
+
+- name: Manager
+  billable: false

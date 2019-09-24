@@ -1,0 +1,9 @@
+---
+- name: Boston
+  region_id: 1
+
+- name: New York
+  region_id: 1
+
+- name: Denver
+  region_id: 2
