@@ -217,24 +217,6 @@ end
 
 puts 'Movies created!'
 
-# People
-# =========================================================
-
-puts 'Deleting old People...'
-People.delete_all
-
-puts 'Loading People...'
-people = load_yaml('people')
-
-puts 'Creating People...'
-people.each do |person|
-  puts "Creating person: #{person['name']}"
-
-  Person.create!(person)
-end
-
-puts 'People created!'
-
 # Roles
 # =========================================================
 
@@ -252,6 +234,24 @@ roles.each do |role|
 end
 
 puts 'Roles created!'
+
+# Regions
+# =========================================================
+
+puts 'Deleting old Regions...'
+Region.delete_all
+
+puts 'Loading Regions...'
+regions = load_yaml('regions')
+
+puts 'Creating Regions...'
+regions.each do |region|
+  puts "Creating region: #{region['name']}"
+
+  Region.create!(region)
+end
+
+puts 'Regions created!'
 
 # Locations
 # =========================================================
@@ -271,22 +271,22 @@ end
 
 puts 'Locations created!'
 
-# Regions
+# People
 # =========================================================
 
-puts 'Deleting old Regions...'
-Region.delete_all
+puts 'Deleting old People...'
+Person.delete_all
 
-puts 'Loading Regions...'
-regions = load_yaml('regions')
+puts 'Loading People...'
+people = load_yaml('people')
 
-puts 'Creating Regions...'
-regions.each do |region|
-  puts "Creating region: #{region['name']}"
+puts 'Creating People...'
+people.each do |person|
+  puts "Creating person: #{person['name']}"
 
-  Region.create!(region)
+  Person.create!(person)
 end
 
-puts 'Regions created!'
+puts 'People created!'
 
 puts 'Seeding Database Complete!'

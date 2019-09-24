@@ -5,7 +5,7 @@ class CreatePeople < ActiveRecord::Migration[6.0]
       t.decimal     :salary
       t.belongs_to  :location
       t.belongs_to  :role
-      t.references  :manager
+      t.references  :manager, null: true
       t.timestamps
     end
   end

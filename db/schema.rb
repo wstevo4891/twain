@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_25_185440) do
+ActiveRecord::Schema.define(version: 2019_09_24_145418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,14 @@ ActiveRecord::Schema.define(version: 2019_08_25_185440) do
     t.index ["movie_id"], name: "index_genres_movies_on_movie_id"
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.string "name"
+    t.bigint "region_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["region_id"], name: "index_locations_on_region_id"
+  end
+
   create_table "movies", force: :cascade do |t|
     t.string "title"
     t.integer "year"
@@ -111,6 +119,19 @@ ActiveRecord::Schema.define(version: 2019_08_25_185440) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "people", force: :cascade do |t|
+    t.string "name"
+    t.decimal "salary"
+    t.bigint "location_id"
+    t.bigint "role_id"
+    t.bigint "manager_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["location_id"], name: "index_people_on_location_id"
+    t.index ["manager_id"], name: "index_people_on_manager_id"
+    t.index ["role_id"], name: "index_people_on_role_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "title"
     t.string "slug"
@@ -127,6 +148,19 @@ ActiveRecord::Schema.define(version: 2019_08_25_185440) do
     t.string "features", default: [], array: true
     t.string "apis", default: [], array: true
     t.string "tech_stack", default: [], array: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "regions", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.boolean "billable"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
