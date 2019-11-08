@@ -1,30 +1,30 @@
 ---
 - name: Eve
-  salary: 50_000.0
+  salary: 50_000
   role_id: 2
   location_id: 2
   manager_id:
 
 - name: Bill
-  salary: 40_000.0
+  salary: 40_000
   role_id: 2
   location_id: 1
   manager_id:
 
 - name: Wendell
-  salary: 35_000.0
+  salary: 35_000
   role_id: 1
   location_id: 1
   manager_id: 1
 
 - name: Christie
-  salary: 30_000.0
+  salary: 30_000
   role_id: 1
   location_id: 1
   manager_id: 1
 
 - name: Sandy
-  salary: 45_000.0
+  salary: 45_000
   role_id: 1
   location_id: 3
   manager_id: 2

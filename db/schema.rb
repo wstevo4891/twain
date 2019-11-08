@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 2019_09_24_145418) do
 
   create_table "people", force: :cascade do |t|
     t.string "name"
-    t.decimal "salary"
+    t.integer "salary"
     t.bigint "location_id"
     t.bigint "role_id"
     t.bigint "manager_id"
