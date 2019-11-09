@@ -20,6 +20,7 @@ module Api
 
     def set_options
       @routes.each do |route|
+        puts route
         route[:model] = route_model(route)
         route[:options] = model_slugs(route) if route[:action] == 'show'
       end

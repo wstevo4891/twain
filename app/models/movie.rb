@@ -1,8 +1,13 @@
 # app\models\movie.rb
 
+# Movie Table class
 class Movie < ApplicationRecord
+  # == Extensions ===========================================================
+  include PgSearch
+
   # == Attributes =============================================================
   # t.string   :title
+  # t.string   :slug
   # t.integer  :year
   # t.string   :rated
   # t.string   :release_date
@@ -32,6 +37,9 @@ class Movie < ApplicationRecord
   end
 
   # == Scopes =================================================================
+  pg_search_scope :search_by_title, against: :title, using: [:tsearch]
+
+  scope :recent, -> { where('year > ?', Date.today.year - 5) }
 
   # == Class Methods ==========================================================
   def self.find_by_genre(genre_id)
@@ -40,14 +48,22 @@ class Movie < ApplicationRecord
 
   def self.by_first_char(query)
     where('lower(title) LIKE :prefix', prefix: "#{query}%")
+  rescue ActiveRecord::RecordNotFound
+    []
   end
 
   def self.lower_case_match(query)
     where(arel_table[:title].lower.matches("%#{query}%"))
   end
 
+  def self.title_match(query, limit)
+    Movie.lower_case_match(query).limit(limit)
+  rescue ActiveRecord::RecordNotFound
+    []
+  end
+
   # == Instance Methods =======================================================
   def three_genres
-    genres.limit(3).pluck(:name)
+    genres.limit(3).pluck(:title)
   end
 end

@@ -50,6 +50,7 @@ end
 def movie_params(movie, poster_file)
   {
     title: movie['Title'],
+    slug: movie['Title'].downcase.tr(' ', '-'),
     year: movie['Year'],
     rated: movie['Rated'],
     release_date: movie['Released'],

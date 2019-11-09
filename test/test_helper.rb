@@ -2,7 +2,12 @@ ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
 
+# Use benchmark for perf tests
+require 'benchmark'
+
 class ActiveSupport::TestCase
+  include Benchmark
+
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)
 

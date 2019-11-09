@@ -6,17 +6,21 @@ version: '3'
 
 services:
   db:
-    image: postgres:9.6-alpine
+    image: postgres:9.6
     # restart: unless-stopped
-    # ports:
-    #   - 5432:5432
+    ports:
+      - 5432:5432
     volumes:
+      # - ./tmp/db:/var/lib/postgresql/data
       - /usr/data/volumes/pgdata/etc:/etc/postgresql
       - /usr/data/volumes/pgdata/log:/var/log/postgresql
       - /usr/data/volumes/pgdata/data:/var/lib/postgresql/data
+    env_file: .env
+
   web:
     build: .
     command: bundle exec rails s -p 3001 -b '0.0.0.0'
+    env_file: .env
     volumes:
       - .:/twain
       # - /usr/data/volumes/bundle:/bundle
@@ -26,6 +30,7 @@ services:
     #   - BUNDLE_PATH=/usr/data/volumes/bundle
     depends_on:
       - db
+
   # webpacker:
   #   build: .
   #   command: bundle exec bin/webpack-dev-server

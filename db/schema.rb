@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2019_09_24_145418) do
 
   create_table "genres", force: :cascade do |t|
     t.string "title"
+    t.string "slug"
     t.string "plural"
     t.string "category"
     t.datetime "created_at", precision: 6, null: false
@@ -103,6 +104,7 @@ ActiveRecord::Schema.define(version: 2019_09_24_145418) do
 
   create_table "movies", force: :cascade do |t|
     t.string "title"
+    t.string "slug"
     t.integer "year"
     t.string "rated"
     t.string "release_date"

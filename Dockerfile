@@ -2,20 +2,20 @@
 # Dockerfile
 # ===============================================
 
-FROM ruby:2.6.2
+FROM ruby:2.6.5
 
 # MAINTAINER wstevo4891
 
 # replace shell with bash so we can source files
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs ghostscript
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
 
 RUN mkdir -p /twain
 RUN mkdir -p /usr/local/nvm
 WORKDIR /twain
 
-RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get install -y nodejs
 
 RUN node -v
