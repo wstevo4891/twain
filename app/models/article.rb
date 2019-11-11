@@ -14,7 +14,7 @@ class Article < ApplicationRecord
 
   # == Attributes ===========================================================
 
-  mount_uploader :cover, ImageUploader
+  mount_uploader :cover, PortfolioUploader
 
   # == Relationships ========================================================
 

@@ -1,4 +1,4 @@
-# app\views\api\v1\movies_index\show.json.jbuilder
+# JSON format of MoviesIndex
 
 @movies_index.each do |genre, list|
   json.set! genre do
@@ -8,7 +8,7 @@
                     :run_time, :plot, :ratings, :release_date, :directors,
                     :writers, :actors
 
-      json.url "/movies/#{movie.id}"
+      json.url "/movies/#{movie.slug}"
 
       json.genres movie.genres_list
     end

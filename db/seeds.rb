@@ -14,7 +14,7 @@ GENRE_IDS_MAP = {
 }.freeze
 
 def bolt_network_image(file)
-  "https://s3-us-west-2.amazonaws.com/bolt-network/#{file}"
+  "https://bolt-network.s3-us-west-2.amazonaws.com/#{file}"
 end
 
 def portfolio_image(file)
@@ -23,6 +23,10 @@ end
 
 def poster_file(path)
   path[%r{/[\w-]+\.yml}].slice(1..-1).sub('.yml', '-poster.jpg')
+end
+
+def movie_slug(path)
+  path[%r{/[\w-]+\.yml}].slice(1..-5)
 end
 
 def portfolio_image_array(arr)
@@ -47,10 +51,13 @@ def genre_ids_array(genres)
   arr.map { |name| GENRE_IDS_MAP[name] }
 end
 
+def genres_short_list(genres)
+  genres.split(', ').take(3)
+end
+
 def movie_params(movie, poster_file)
   {
     title: movie['Title'],
-    slug: movie['Title'].downcase.tr(' ', '-'),
     year: movie['Year'],
     rated: movie['Rated'],
     release_date: movie['Released'],
@@ -62,6 +69,7 @@ def movie_params(movie, poster_file)
     remote_photo_url: bolt_network_image(poster_file),
     poster: movie['Poster'],
     ratings: { ratings: movie['Ratings'] },
+    genres_list: genres_short_list(movie['Genre']),
     genre_ids: genre_ids_array(movie['Genre'])
   }
 end
@@ -208,8 +216,9 @@ Dir['db/yaml_data/movies/*.yml'].each do |path|
   poster_file = poster_file(path)
 
   params = movie_params(movie, poster_file)
-
-  params[:logo] = movie['Logo'] if movie['Logo']
+  params[:slug] = movie_slug(path)
+  params[:remote_banner_url] = bolt_network_image(movie['Banner']) if movie['Banner']
+  params[:remote_logo_url] = bolt_network_image(movie['Logo']) if movie['Logo']
 
   Movie.create!(params)
 

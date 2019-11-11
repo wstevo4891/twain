@@ -10,14 +10,22 @@ module Api
       # GET /api/v1/genres
       #
       def index
-        render json: Genre.all
+        @genres = Genre.all
       end
 
       ##
       # GET /api/v1/genres/:slug
       #
       def show
-        render json: Genre.find_by(slug: params[:slug])
+        @results = genre_results
+      end
+
+      private
+
+      def genre_results
+        genre = Genre.find_by(slug: params[:slug])
+
+        { genre: genre, movies: genre.movies }
       end
     end
   end

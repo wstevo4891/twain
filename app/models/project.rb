@@ -32,13 +32,13 @@ class Project < ApplicationRecord
   # t.string   :apis, array: true, default: []
   # t.string   :tech_stack, array: true, default: []
 
-  mount_uploader :cover, ImageUploader
+  mount_uploader :cover, PortfolioUploader
 
-  mount_uploaders :images, ImageUploader
+  mount_uploaders :images, PortfolioUploader
 
-  mount_uploader :desktop, ImageUploader
+  mount_uploader :desktop, PortfolioUploader
 
-  mount_uploaders :mobile, ImageUploader
+  mount_uploaders :mobile, PortfolioUploader
 
   # == Relationships ========================================================
 

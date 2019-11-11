@@ -3,7 +3,7 @@
 # Movie Table class
 class Movie < ApplicationRecord
   # == Extensions ===========================================================
-  include PgSearch
+  include PgSearch::Model
 
   # == Attributes =============================================================
   # t.string   :title
@@ -20,10 +20,15 @@ class Movie < ApplicationRecord
   # t.string   :logo
   # t.string   :poster
   # t.json     :ratings
+  # t.string   :genres_list
 
-  attr_reader :genres_list
+  # attr_reader :genres_list
 
-  mount_uploader :photo, ImageUploader
+  mount_uploader :photo, BoltNetworkUploader
+
+  mount_uploader :banner, BoltNetworkUploader
+
+  mount_uploader :logo, BoltNetworkUploader
 
   # == Relationships ==========================================================
   has_and_belongs_to_many :genres
@@ -32,9 +37,9 @@ class Movie < ApplicationRecord
   validates :title, :year, :rated, :run_time, :plot, presence: true
 
   # == Callbacks ==============================================================
-  after_initialize do
-    @genres_list = three_genres
-  end
+  # after_initialize do
+  #   @genres_list = three_genres
+  # end
 
   # == Scopes =================================================================
   pg_search_scope :search_by_title, against: :title, using: [:tsearch]
@@ -63,7 +68,7 @@ class Movie < ApplicationRecord
   end
 
   # == Instance Methods =======================================================
-  def three_genres
-    genres.limit(3).pluck(:title)
-  end
+  # def three_genres
+  #   genres.limit(3).pluck(:title)
+  # end
 end

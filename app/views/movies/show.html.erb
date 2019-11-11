@@ -26,10 +26,17 @@
 
     <tbody>
 
+    <% image_attrs = ['photo', 'banner', 'logo'] %>
+
     <% @movie.attributes.each do |key, value| %>
       <tr>
         <td><%= key.upcase %></td>
-        <td><%= value %></td>
+
+        <% if image_attrs.include?(key) %>
+          <td><%= @movie.send(key).url %></td>
+        <% else %>
+          <td><%= value %></td>
+        <% end %>
       </tr>
     <% end %>
 

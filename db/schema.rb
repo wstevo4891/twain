@@ -114,9 +114,11 @@ ActiveRecord::Schema.define(version: 2019_09_24_145418) do
     t.string "actors", default: [], array: true
     t.string "plot"
     t.string "photo"
+    t.string "banner"
     t.string "logo"
     t.string "poster"
     t.json "ratings"
+    t.string "genres_list", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

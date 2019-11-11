@@ -41,7 +41,10 @@ Rails.application.routes.draw do
       get '/movies', to: 'movies#index'
 
       # Movies show
-      get '/movies/:slug', to: 'movies#show', as: :movie
+      get '/movies/:id', to: 'movies#show', as: :movie
+
+      # Search Movie Titles
+      post '/movies/search', to: 'movies#search', as: :search_movies
 
       # Recent Movies
       get '/recent-movies', to: 'recent_movies#index', as: :recent_movies
@@ -68,4 +71,9 @@ Rails.application.routes.draw do
   get '/api/data/:model', to: 'api/data#index'
 
   post '/api/data', to: 'api/data#show'
+
+  # ===========================================================================
+  # Query Labs
+  # ===========================================================================
+  get '/query-labs', to: 'query_labs#show'
 end

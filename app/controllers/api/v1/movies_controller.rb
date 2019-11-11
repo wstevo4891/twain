@@ -6,18 +6,27 @@ module Api
   module V1
     # API Controller for movies
     class MoviesController < ApplicationController
+      skip_before_action :verify_authenticity_token
+
       ##
       # GET /api/v1/movies
       #
       def index
-        render json: Movie.all
+        @movies = Movie.all
       end
 
       ##
       # GET /api/v1/movies/:slug
       #
       def show
-        render json: Movie.find_by(slug: params[:slug])
+        @movie = Movie.find(params[:id])
+      end
+
+      ##
+      # POST /api/v1/movies/search
+      #
+      def search
+        @movies = Movie.where(title: params[:titles])
       end
     end
   end

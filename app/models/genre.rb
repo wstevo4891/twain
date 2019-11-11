@@ -3,7 +3,7 @@
 # Genre Table class
 class Genre < ApplicationRecord
   # == Extensions ===========================================================
-  include PgSearch
+  include PgSearch::Model
 
   # == Attributes =============================================================
   # title    [String]

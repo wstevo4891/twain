@@ -10,7 +10,7 @@ module Api
       # GET /api/v1/recent-movies
       #
       def index
-        render json: Movie.recent
+        @movies = Movie.recent
       end
     end
   end
