@@ -17,7 +17,6 @@ class MoviesIndex
 
   def initialize(slide_length)
     @limit = LENGTH_MAP[slide_length]
-    @genres = Genre.all
   end
 
   def call
@@ -27,7 +26,7 @@ class MoviesIndex
   private
 
   def build_index
-    @genres.each_with_object({}) do |genre, hash|
+    Genre.all.each_with_object({}) do |genre, hash|
       hash[genre.title] = genre.movies.limit(@limit)
     end
   end

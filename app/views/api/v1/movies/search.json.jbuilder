@@ -6,7 +6,7 @@ json.array!(@movies) do |movie|
                 :run_time, :plot, :ratings, :release_date, :directors,
                 :writers, :actors, :banner, :logo
 
-  json.url "/movies/#{movie.slug}"
+  json.url "/movies/#{movie.id}"
 
   json.genres movie.genres_list
 end

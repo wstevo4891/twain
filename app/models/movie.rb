@@ -62,9 +62,13 @@ class Movie < ApplicationRecord
   end
 
   def self.title_match(query, limit)
-    Movie.lower_case_match(query).limit(limit)
+    lower_case_match(query).limit(limit)
   rescue ActiveRecord::RecordNotFound
     []
+  end
+
+  def self.titles(genre)
+    joins(:genres).where(genres: { title: genre }).pluck(:title)
   end
 
   # == Instance Methods =======================================================
