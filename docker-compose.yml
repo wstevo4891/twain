@@ -27,9 +27,14 @@ services:
     ports:
       - 3001:3001
     # environment:
-    #   - BUNDLE_PATH=/usr/data/volumes/bundle
+      # - SELENIUM_REMOTE_URL: http://webdriver_chrome:4444/wd/hub
+      # - BUNDLE_PATH=/usr/data/volumes/bundle
     depends_on:
       - db
+      - webdriver_chrome
+  
+  webdriver_chrome:
+    image: selenium/standalone-chrome
 
   # webpacker:
   #   build: .
