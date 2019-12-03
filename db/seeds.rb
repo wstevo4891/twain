@@ -13,6 +13,12 @@ GENRE_IDS_MAP = {
   'Horror' => 10
 }.freeze
 
+def genre_ids_array(genres)
+  arr = genres.split(', ')
+
+  arr.map { |name| GENRE_IDS_MAP[name] }
+end
+
 def bolt_network_image(file)
   "https://bolt-network.s3-us-west-2.amazonaws.com/#{file}"
 end
@@ -43,12 +49,6 @@ end
 
 def load_movie(path)
   YAML.load_file(Rails.root.join(path))
-end
-
-def genre_ids_array(genres)
-  arr = genres.split(', ')
-
-  arr.map { |name| GENRE_IDS_MAP[name] }
 end
 
 def genres_short_list(genres)

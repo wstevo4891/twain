@@ -18,12 +18,12 @@ class ArrayFlattener
 
   def flatten_array(arr)
     arr.each_with_object([]) do |item, flat|
-      if item.is_a? Integer
-        flat << item
-      else
+      if item.is_a? Array
         flatten_array(item).each do |num|
           flat << num
         end
+      else
+        flat << item
       end
     end
   end

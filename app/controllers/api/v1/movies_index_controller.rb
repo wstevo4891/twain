@@ -5,6 +5,10 @@ module Api
     # Movies Index API
     # Route for fetching an object of movies indexed by genre
     class MoviesIndexController < ApplicationController
+      def index
+        @movies_index = MoviesIndex.build
+      end
+
       def show
         @movies_index = MoviesIndex.build(params[:slide_length])
       end

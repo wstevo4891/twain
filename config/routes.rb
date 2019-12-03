@@ -49,6 +49,9 @@ Rails.application.routes.draw do
       # Recent Movies
       get '/recent-movies', to: 'recent_movies#index', as: :recent_movies
 
+      # Full Movies Index
+      get '/movies-index', to: 'movies_index#index'
+
       # Movies Index for Bolt Network sliders
       get '/movies-index/:slide_length', to: 'movies_index#show'
 
