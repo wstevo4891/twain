@@ -74,7 +74,7 @@ class ArticlesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_article
-    @article = Article.find(params[:id])
+    @article = Article.includes(:blog).find(params[:id])
   end
 
   # Never trust parameters from the scary internet,

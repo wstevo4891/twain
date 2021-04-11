@@ -17,15 +17,7 @@ module Api
       # GET /api/v1/genres/:slug
       #
       def show
-        @results = genre_results
-      end
-
-      private
-
-      def genre_results
-        genre = Genre.find_by(slug: params[:slug])
-
-        { genre: genre, movies: genre.movies }
+        @genre = Genre.includes(:movies).find_by(slug: params[:slug])
       end
     end
   end

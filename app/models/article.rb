@@ -17,8 +17,11 @@ class Article < ApplicationRecord
   mount_uploader :cover, PortfolioUploader
 
   # == Relationships ========================================================
+  belongs_to :blog
 
   has_rich_text :content
+
+  has_many :comments
 
   # == Validations ==========================================================
 
@@ -35,7 +38,7 @@ class Article < ApplicationRecord
 
   # == Instance Methods =====================================================
 
-  def blog
-    Blog.find(blog_id)
-  end
+  # def blog
+  #   Blog.find(blog_id)
+  # end
 end

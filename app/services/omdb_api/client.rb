@@ -29,13 +29,13 @@ module OmdbApi
     private
 
     def build_url(params)
-      full_url = api_path.to_s + "?apikey=#{api_key}"
+      url = api_path.to_s + "?apikey=#{api_key}"
 
       params.each do |key, value|
-        full_url.concat "&#{key}=#{value.tr(' ', '+')}"
+        url.concat "&#{key}=#{value.tr(' ', '+')}"
       end
 
-      full_url
+      url
     end
   end
 end

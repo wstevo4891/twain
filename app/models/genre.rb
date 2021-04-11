@@ -44,5 +44,25 @@ class Genre < ApplicationRecord
     []
   end
 
+  # Single query to find genres with the most movies
+  def self.with_most_movies
+    joins(:genres_movies)
+      .group('genres.id')
+      .having('count(genre_id) > ?', 28)
+      .pluck(:title)
+  end
+
   # == Instance Methods =======================================================
 end
+
+
+# Blog.includes(posts: [:comments])
+#     .where(posts: { id: params[:post_id]})
+#     .find(params[:blog_id])
+
+# Tag.limit(100).select { |tag| tag.posts.size > 5000 }
+
+# Tag.limit(100)
+#    .joins(:posts_tags)
+#    .group('tags.id')
+#    .having('count(tag_id > ?', 5000)

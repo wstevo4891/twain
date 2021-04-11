@@ -1,8 +1,8 @@
-# app\models\movie.rb
+# frozen_string_literal: true
 
 # Movie Table class
 class Movie < ApplicationRecord
-  # == Extensions ===========================================================
+  # == Extensions =============================================================
   include PgSearch::Model
 
   # == Attributes =============================================================
@@ -22,8 +22,6 @@ class Movie < ApplicationRecord
   # t.json     :ratings
   # t.string   :genres_list
 
-  # attr_reader :genres_list
-
   mount_uploader :photo, BoltNetworkUploader
 
   mount_uploader :banner, BoltNetworkUploader
@@ -37,14 +35,11 @@ class Movie < ApplicationRecord
   validates :title, :year, :rated, :run_time, :plot, presence: true
 
   # == Callbacks ==============================================================
-  # after_initialize do
-  #   @genres_list = three_genres
-  # end
 
   # == Scopes =================================================================
   pg_search_scope :search_by_title, against: :title, using: [:tsearch]
 
-  scope :recent, -> { where('year > ?', Date.today.year - 5) }
+  scope :recent, -> { where('year > ?', 5.years.ago.year) }
 
   # == Class Methods ==========================================================
   def self.find_by_genre(genre_id)
@@ -67,12 +62,23 @@ class Movie < ApplicationRecord
     []
   end
 
+  def self.find_by_genres(genres)
+    limit = genres.length > 1 ? 5 : 20
+
+    genres.each_with_object([]) do |genre, arr|
+      arr.concat(genre.movies.limit(limit))
+    end
+  end
+
   def self.titles(genre)
     joins(:genres).where(genres: { title: genre }).pluck(:title)
   end
 
+  def self.index_by_genre
+    Genre.includes(:movies).each_with_object({}) do |genre, hash|
+      hash[genre.title] = genre.movies.take(24)
+    end
+  end
+
   # == Instance Methods =======================================================
-  # def three_genres
-  #   genres.limit(3).pluck(:title)
-  # end
 end

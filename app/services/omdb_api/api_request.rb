@@ -2,7 +2,9 @@
 
 module OmdbApi
   ##
-  # Service for processing API requests to OMDB
+  # Service for processing API requests
+  # to the Open Movies Database (OMDB),
+  # a service of imdb.com
   #
   class ApiRequest
     HEADERS = {
@@ -50,8 +52,7 @@ module OmdbApi
     private
 
     def get_request(url)
-      req = Net::HTTP::Get.new(url, HEADERS)
-      req
+      Net::HTTP::Get.new(url, HEADERS)
     end
 
     def post_request(data)
@@ -60,10 +61,12 @@ module OmdbApi
       req
     end
 
+    # To use SSL:
+    # Net::HTTP.start(hostname, port, use_ssl: true) do |http|
+    #   http.request(request)
+    # end
+    #
     def send_request(request)
-      # Net::HTTP.start(hostname, port, use_ssl: true) do |http|
-      #   http.request(request)
-      # end
       Net::HTTP.start(hostname, port) do |http|
         http.request(request)
       end

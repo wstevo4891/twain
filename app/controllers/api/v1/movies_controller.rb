@@ -16,7 +16,7 @@ module Api
       end
 
       ##
-      # GET /api/v1/movies/:slug
+      # GET /api/v1/movies/:id
       #
       def show
         @movie = Movie.find(params[:id])
