@@ -53,6 +53,8 @@ gem 'font-awesome-rails'
 # Use carrierwave and rmagick for image uploads
 gem 'carrierwave'
 gem 'rmagick'
+# carrierwave dependencies
+gem 'mimemagic', '~> 0.3.7'
 
 # Use fog for AWS support
 gem 'fog-aws'

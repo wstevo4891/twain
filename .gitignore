@@ -38,3 +38,6 @@ yarn-debug.log*
 
 # Ignore development image uploads
 /public/uploads
+
+# Ignore development notes
+/dev_notes
